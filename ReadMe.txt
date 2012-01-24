@@ -47,7 +47,18 @@ Installation
 	    }                                                                                                                                
 	}
 	
-4. Spirit webadmin can be found at /spirit/admin/index.cfm
+4. Spirit webadmin can be found at /spirit/admin/index.cfm. Use spirit admin to create views, states, add controllers and templates.
 
+5. Routing
+Default routing rule is: site.com/view_name/state_name if no overrides made with settings.
+
+To pass some extra variables simply add values divided by slash: site.com/view_name/state_name/my_var_1/my_var_2
+
+Url vars should be picked up with the spirit get function. If not 404 thrown.
+
+example: myVar = event.target.get(3, "hello");
+
+Spirit will use the third var in the url and use "hello" as a default value if variable is not passed.
+If default value is numeric, Spirit will try to parse the value as an integer.
 
 More to come...
