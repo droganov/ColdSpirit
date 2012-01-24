@@ -294,6 +294,7 @@
 		public void function header(numeric statuscode, string statustext:""){
 			header statuscode=arguments.statuscode statustext=arguments.statustext;
 		}
+
 		// Renderers
 		public void function render(string mode:""){
 			var e = var event = variables.event;
