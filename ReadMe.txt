@@ -1,7 +1,7 @@
 Installation
 1. Copy "skeleton" folder contents to the webroot
 
-2. Copy "spirit" folder to the webroot or map it as /spirit in Railo admin. If you use spirit for production, make sure /spirit/admin is accessible from the web.
+2. Copy "spirit" folder to the webroot or map it as /spirit in Railo admin. If you use spirit for production, make sure /spirit/admin is not accessible from the Web.
 
 3. ColdSpirit requires some rewrite rules:
 	3.1 Apache (rewrites and the proxies everything to Tomcat):
