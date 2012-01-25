@@ -4,7 +4,7 @@ Installation
 2. Copy "spirit" folder to the webroot or map it as /spirit in Railo admin. If you use spirit for production, make sure /spirit/admin is not accessible from the Web.
 
 3. ColdSpirit requires some rewrite rules:
-	3.1 Apache (rewrites and the proxies everything to Tomcat):
+	3.1 Apache (rewrites and proxies everything to Tomcat):
 
 	<VirtualHost *:80>
 		ServerName test.dev
