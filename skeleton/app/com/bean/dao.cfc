@@ -11,7 +11,7 @@
 		<cfargument name="id" type="numeric" default="0" />
 		<cfargument name="fieldNames" type="string" default="*" />
 		<cfargument name="where" type="string" default="" />
-		<cfquery name = "local.data" datasource = "#this.getDSN()#">
+		<cfquery name="local.data" datasource="#this.getDSN()#">
 			SELECT
 				#arguments.fieldNames#
 			FROM
@@ -29,7 +29,7 @@
 	</cffunction>
 	<cffunction name="delete" output="no" returntype="void" access="public" hint="Deletes single or multiple database records">
 		<cfargument name="id" type="string" default="#this.get('id')#" />
-		<cfquery name = "delete" datasource = "#this.getDSN()#">
+		<cfquery name="delete" datasource="#this.getDSN()#">
 			DELETE FROM #this.getTableName()#
 			WHERE
 			id IN (<cfqueryparam value="#arguments.id#" CFSQLType="cf_sql_integer" list="yes" />)
@@ -47,7 +47,7 @@
 			}
 		</cfscript>
 		<cflock timeout="100" name="insertLock">
-			<cfquery name = "insert" datasource = "#this.getDSN()#">
+			<cfquery name="insert" datasource="#this.getDSN()#">
 				INSERT INTO #tableName# (#ArrayToList(fn)#)
 				VALUES(
 					<cfloop index="i" from="1" to="#ArrayLen(fn)#">
@@ -65,7 +65,7 @@
 	<cffunction name="update" output="no" returntype="void" access="public">
 		<cfargument name="data" type="struct" default="#form#" />
 		<cfset arguments.fieldNames = ListToArray(getColumnNames(arguments.table)) />
-		<cfquery name = "update" datasource = "#this.getDSN()#">
+		<cfquery name="update" datasource="#this.getDSN()#">
 			UPDATE
 				#this.getTableName()#
 			SET
@@ -99,7 +99,7 @@
 		<cfreturn variables.data[arguments.key] />
 	</cffunction>
 	<cffunction name="getLastID" output="no" returntype="numeric" access="public" hint="Returns last inserted ID">
-		<cfquery name="getId" dataSource = "#this.getDSN()#">
+		<cfquery name="getId" dataSource="#this.getDSN()#">
 			SELECT LAST_INSERT_ID() AS `id`
 		</cfquery>
 		<cfreturn Val(getId.id) />
@@ -109,7 +109,7 @@
 	</cffunction>
 	<cffunction name="hide" output="no" returntype="void" access="public">
 		<cfargument name="id" type="string" default="#this.get('id')#" />
-		<cfquery name = "update" datasource = "#this.getDSN()#">
+		<cfquery name="update" datasource="#this.getDSN()#">
 			UPDATE
 				#this.getTableName()#
 			SET
@@ -121,7 +121,7 @@
 	</cffunction>
 	<cffunction name="show" output="no" returntype="void" access="public">
 		<cfargument name="id" type="string" default="#this.get('id')#" />
-		<cfquery name = "update" datasource = "#this.getDSN()#">
+		<cfquery name="update" datasource="#this.getDSN()#">
 			UPDATE
 				#this.getTableName()#
 			SET
