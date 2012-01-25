@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/* SpryValidationTextField.css - version 0.4 - Spry Pre-Release 1.6.1 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+
+/* These are the classes applied on the error messages
+ * which prevent them from being displayed by default.
+ */ 
+.textfieldRequiredMsg, 
+.textfieldInvalidFormatMsg, 
+.textfieldMinValueMsg,
+.textfieldMaxValueMsg,
+.textfieldMinCharsMsg,
+.textfieldMaxCharsMsg,
+.textfieldValidMsg,
+.textfieldCustomMsg,
+
+.textfieldRequiredState .helper, 
+.textfieldInvalidFormatState .helper, 
+.textfieldMinValueState .helper,
+.textfieldMaxValueState .helper,
+.textfieldMinCharsState .helper,
+.textfieldMaxCharsState .helper,
+.textfieldCustomState .helper
+ {
+	display: none;
+}
+
+.textfieldRequiredState .textfieldRequiredMsg, 
+.textfieldInvalidFormatState .textfieldInvalidFormatMsg, 
+.textfieldMinValueState .textfieldMinValueMsg,
+.textfieldMaxValueState .textfieldMaxValueMsg,
+.textfieldMinCharsState .textfieldMinCharsMsg,
+.textfieldMaxCharsState .textfieldMaxCharsMsg,
+.textfieldCustomState .textfieldCustomMsg
+{
+	display: inline;
+	color: #F15A24;
+}
+
+
+
+
+
+.textfieldValidState input, input.textfieldValidState {
+	border-color: #1BBDA5;
+}
+
+
+/* When the widget is in an invalid state the INPUT has a red background applied on it. */
+input.textfieldRequiredState, .textfieldRequiredState input, 
+input.textfieldInvalidFormatState, .textfieldInvalidFormatState input, 
+input.textfieldMinValueState, .textfieldMinValueState input, 
+input.textfieldMaxValueState, .textfieldMaxValueState input, 
+input.textfieldMinCharsState, .textfieldMinCharsState input, 
+input.textfieldMaxCharsState, .textfieldMaxCharsState input,
+input.textfieldCustomState, .textfieldCustomState input {
+	border-color: #F15A24;
+}
+
+
+
+
+.textfieldFlashText input, input.textfieldFlashText {
+	border-color: #1BBDA5;
+}
+
+/* When the widget has the hint message on, the hint text can be styled differently than the user typed text. */
+.textfieldHintState input, input.textfieldHintState {
+	color: #A3A3A3 !important;
+}

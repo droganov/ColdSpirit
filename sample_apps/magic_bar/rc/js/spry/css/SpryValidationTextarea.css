@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* SpryFormValidation.css - version 0.5 - Spry Pre-Release 1.6.1 */
+
+/* Copyright (c) 2006. Adobe Systems Incorporated. All rights reserved. */
+
+
+
+/* These are the classes applied on the error messages
+ * which prevent them from being displayed by default.
+ */ 
+.textareaRequiredMsg,
+.textareaMinCharsMsg,
+.textareaMaxCharsMsg,
+.textareaValidMsg {
+	display:none;
+}
+
+{
+	color: #F15A24;
+	white-space:nowrap;
+}
+
+
+.textareaValidState textarea, textarea.textareaValidState {
+	border-color: #1BBDA5;
+}
+
+textarea.textareaRequiredState, .textareaRequiredState textarea, 
+textarea.textareaMinCharsState, .textareaMinCharsState textarea, 
+textarea.textareaMaxCharsState, .textareaMaxCharsState textarea {
+	border-color: #F15A24;
+}
+
+/* This class applies only for a short period of time and changes the way the text in the textarea looks like.
+ * It applies only when the widget has enforce max chars enabled and the user tries to type some more.
+ */
+.textareaFlashState textarea, textarea.textareaFlashState{
+	color:red !important;
+}
+/* When the widget has the hint message on, the hint text can be styled differently than the user typed text. */
+textarea.textareaHintState, .textareaHintState textarea{
+	/* color: red !important;*/
+}
