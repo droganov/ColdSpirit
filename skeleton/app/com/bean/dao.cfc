@@ -39,7 +39,7 @@
 	<cffunction name="create" output="no" returntype="numeric" access="public" hint="Creates new record and returns last ID. To add validation override this method in your bean, perform validation and then call super.create method">
 		<cfargument name="data" type="struct" default="#form#" />
 		<cfset var tableName = this.getTableName() />
-`		<cfset var fieldNames = ListToArray(this.filterFields(arguments.data, this.getColumnNames(tableName))) />
+		<cfset var fieldNames = ListToArray(this.filterFields(arguments.data, this.getColumnNames(tableName))) />
 		<cfscript>
 			var fn = [];
 			for (local.i=1; i LTE ArrayLen(fieldNames); i=i+1) {
