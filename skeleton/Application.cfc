@@ -8,8 +8,7 @@
 		// spirit settings (optional)
 		variables.spiritSettings = {
 			interface: 		"xml", // currently xml and MySQL are supported
-			appKey:			"spirit", // You can run several Spirit instances within 1 Applications if you set different keys for each
-			transients:		"controllers" // By default all components except "beans" are cached in app scope (singletones). It's recommentded to set controllers as transients during development process  
+			appKey:			"spirit" // You can run several Spirit instances within 1 Applications if you set different keys for each
 		};
 		
 		// initialize atFirstRequest
