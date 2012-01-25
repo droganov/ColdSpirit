@@ -8,7 +8,7 @@
 	
 	<!--- Dao --->
 	<cffunction name="read" output="no" returntype="void" access="public">
-		<cfargument name="id" type="numeric" default="0" />
+		<cfargument name="id" type="numeric" default="#this.get('id')#" />
 		<cfargument name="fieldNames" type="string" default="*" />
 		<cfargument name="where" type="string" default="" />
 		<cfquery name="local.data" datasource="#this.getDSN()#">
@@ -39,7 +39,7 @@
 	<cffunction name="create" output="no" returntype="numeric" access="public" hint="Creates new record and returns last ID. To add validation override this method in your bean, perform validation and then call super.create method">
 		<cfargument name="data" type="struct" default="#form#" />
 		<cfset var tableName = this.getTableName() />
-`		<cfset var fieldNames = ListToArray(filterFields(arguments.data, this.getColumnNames(tableName))) />
+`		<cfset var fieldNames = ListToArray(this.filterFields(arguments.data, this.getColumnNames(tableName))) />
 		<cfscript>
 			var fn = [];
 			for (local.i=1; i LTE ArrayLen(fieldNames); i=i+1) {
@@ -52,7 +52,7 @@
 				VALUES(
 					<cfloop index="i" from="1" to="#ArrayLen(fn)#">
 						<cfset var fieldName = fn[i] />
-						<cfset var fieldValue = arguments.data[fieldNames[i])] />
+						<cfset var fieldValue = arguments.data[fieldNames[i]] />
 						<cfqueryparam value="#fieldValue#" CFSQLType="#this.CFSQLTypeOf(fieldValue)#" />#IIF(i LT ArrayLen(fn), DE(", "), DE(""))#
 					</cfloop>
 				)
@@ -64,7 +64,8 @@
 	</cffunction>
 	<cffunction name="update" output="no" returntype="void" access="public">
 		<cfargument name="data" type="struct" default="#form#" />
-		<cfset arguments.fieldNames = ListToArray(getColumnNames(arguments.table)) />
+		<cfparam name="arguments.data.id" type="numeric" default="#this.get('id')#" />
+		<cfset arguments.fieldNames = ListToArray(getColumnNames(this.getTableName())) />
 		<cfquery name="update" datasource="#this.getDSN()#">
 			UPDATE
 				#this.getTableName()#
@@ -74,7 +75,7 @@
 					<cfif StructKeyExists(arguments.data, arguments.fieldNames[i])>,
 						<cfset var fieldName = arguments.fieldNames[i] />
 						<cfset var fieldValue = arguments.data[fieldName] />
-						`#fieldName#` = <cfqueryparam value="#fieldValue#" CFSQLType="#this.typeOf(fieldValue)#" />
+						`#fieldName#` = <cfqueryparam value="#fieldValue#" CFSQLType="#this.CFSQLTypeOf(fieldValue)#" />
 					</cfif>
 				</cfloop>
 			WHERE
@@ -143,6 +144,20 @@
 			if(IsDate(arguments.field) AND Len(arguments.field) GT 9)
 				return "CF_SQL_TIMESTAMP";
 			return "CF_SQL_VARCHAR";
+		</cfscript>
+	</cffunction>
+	<cffunction name="filterFields" output="no" returntype="string" access="private">
+		<cfargument name="data" type="struct" />
+		<cfargument name="fieldNames" type="string" />
+		<cfset arguments.fieldNames = ListToArray(arguments.fieldNames) />
+		<cfscript>
+			var result = "";
+			for (local.i=1; i LTE ArrayLen(arguments.fieldNames); i=i+1) {
+				if(StructKeyExists(arguments.data, arguments.fieldNames[i]) AND arguments.fieldNames[i] NEQ "id") {
+					result = ListAppend(result, arguments.fieldNames[i]);
+				}
+			}
+			return result;
 		</cfscript>
 	</cffunction>
 	<cffunction name="getColumnNames" output="no" returntype="string" access="private">
