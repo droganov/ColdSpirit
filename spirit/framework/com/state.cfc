@@ -1,6 +1,6 @@
 <cfcomponent>
 	<cfscript>
-		public state function init(id, view, settings){
+		public state function init(required numeric id, required view view, required struct settings){
 			this.id						= arguments.id;
 			variables.settings			= arguments.settings;
 			variables.view 				= arguments.view;
@@ -21,7 +21,7 @@
 		
 		
 		// Getters
-		public string function get(key){
+		public string function get(required string key){
 			return variables.data[key];
 		}
 		public Query function getAttributes(){
@@ -29,7 +29,7 @@
 		}
 		
 		// Setters
-		public numeric function insert(data){
+		public numeric function insert(required struct data){
 			if(NOT StructKeyExists(arguments.data, "name"))
 				arguments.data.name = "default";
 			if(NOT StructKeyExists(arguments.data, "label"))
@@ -48,7 +48,7 @@
 			variables.view.reset();
 			return idState;
 		}
-		public void function update(data){
+		public void function update(required struct data){
 			if(NOT StructKeyExists(arguments.data, "name"))
 				arguments.data.name = this.get("name");
 			var validatedData = this.validate(arguments.data);
@@ -70,10 +70,10 @@
 			var sublingStates = variables.view.fetchStates("all");
 			return ArrayMax(ListToArray(ValueList(sublingStates.priority))) + 1;
 		}
-		private string function getSetting(key){
+		private string function getSetting(required string key){
 			return variables.settings[arguments.key];
 		}
-		private query function validate(data){
+		private query function validate(required struct data){
 			if(NOT StructKeyExists(arguments.data, "id_view"))
 				arguments.data.id_view = variables.view.get("id");
 			if(NOT StructKeyExists(arguments.data, "title"))

@@ -1,6 +1,6 @@
 <cfcomponent>
 	<cfscript>
-		public view function init(name, settings){
+		public view function init(required string name, required struct settings){
 			this.name					= arguments.name;
 			variables.settings			= arguments.settings;
 			variables.data				= this.getData();
@@ -40,7 +40,7 @@
 		public boolean function hasAlias(){
 			return variables.hasAlias;
 		}
-		public boolean function hasAncestor(name){
+		public boolean function hasAncestor(required string name){
 			try {
 				var result = StructKeyExists(variables.breadcrumbs, arguments.name);
 			}
@@ -57,13 +57,13 @@
 		public boolean function isDefaultView(){
 			return !variables.hasParent;
 		}
-		public boolean function hasState(name){
+		public boolean function hasState(required string name){
 			return StructKeyExists(variables.stateStack, arguments.name);
 		}
 		
 		
 		// Getters
-		public string function get(key){
+		public string function get(required string key){
 			return variables.data[arguments.key];
 		}
 		public query function getAncestor(visibility:"visible"){
@@ -167,7 +167,7 @@
 			interfaceObj.deleteView(viewID);
 			this.reset();
 		}
-		public numeric function insert(data){
+		public numeric function insert(required struct data){
 			if(NOT StructKeyExists(arguments.data, "priority"))
 				arguments.data.priority = this.getNextPriority();
 			if(NOT StructKeyExists(arguments.data, "label"))
@@ -196,11 +196,11 @@
 			this.insertState(stateArguments);
 			return idView;
 		}
-		public numeric function insertState(data){
+		public numeric function insertState(required struct data){
 			var state = this.getState();
 			return state.insert(arguments.data);
 		}
-		public void function move(targetViewName,placeAfter){
+		public void function move(required string targetViewName, required string placeAfter){
 			var targetObj = this.getViewByName(arguments.targetViewName);
 			if(NOT targetObj.hasAncestor(this.get("name"))) {
 				var mySublings = targetObj.fetchViews("all");
@@ -237,7 +237,7 @@
 		public void function reset(){
 			var spirit = CreateObject("component", "boot").init(variables.settings);
 		}
-		public void function update(data){
+		public void function update(required struct data){
 			if(
 				StructKeyExists(arguments.data, "name")
 			AND
@@ -265,7 +265,7 @@
 		}
 		
 		// Service
-		private struct function getViewByID(numeric id){
+		private struct function getViewByID(required numeric id){
 			lock scope="application" type="exclusive" timeout="300" {
 				var viewStack = application[variables.settings.appKey].viewStack;
 			}
@@ -276,13 +276,13 @@
 			}
 			throw("Your application doesn't have view with id " & arguments.id);
 		}
-		private view function getViewByName(name){
+		private view function getViewByName(required string name){
 			lock scope="application" type="exclusive" timeout="300" {
 				var result = application[variables.settings.appKey].viewStack[arguments.name];
 			}
 			return result;
 		}
-		private string function getSetting(key){
+		private string function getSetting(required  string key){
 			return variables.settings[arguments.key];
 		}
 		private query function getData(){
@@ -325,7 +325,7 @@
 			variables.states[arguments.visibility] = states;
 			return states;
 		}
-		private boolean function viewExists(name){
+		private boolean function viewExists(required string name){
 			lock scope="application" type="exclusive" timeout="300" {
 				var result = StructKeyExists(application[variables.settings.appKey].viewStack, arguments.name);
 			}

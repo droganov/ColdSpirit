@@ -147,7 +147,7 @@
 		}
 		
 		// Getters
-		public string function get(string key, string default:"f"){
+		public string function get(required string key, string default:"f"){
 			variables.event.get.keys[arguments.key] = "";
 			try {
 				var myResult = variables.event.get.key[arguments.key];
@@ -158,7 +158,7 @@
 			}
 			return myResult;
 		}
-		public any function getBean(string beanName, string dsn:this.getSetting("dsn")){
+		public any function getBean(required string beanName, string dsn:this.getSetting("dsn")){
 			var bean = CreateObject("component", this.getSetting("bean") & arguments.beanName);
 			var data = {};
 			data.dsn = arguments.dsn;
@@ -166,7 +166,7 @@
 			bean["extend"] = this["extend"];
 			return bean.extend(data);
 		}
-		public string function getBlock(string blockName, numeric chachedWithin:0, string blockPrefix:"block"){
+		public string function getBlock(required string blockName, numeric chachedWithin:0, string blockPrefix:"block"){
 			arguments.blockName = this.getSetting("block") & arguments.blockName & ".cfm";
 			if(arguments.chachedWithin) {
 				var cacheKey = arguments.blockPrefix & "_" & arguments.blockName;
@@ -179,7 +179,7 @@
 			}
 			return this.include(arguments.blockName);
 		}
-		public any function getService(string serviceName, struct data:{}){
+		public any function getService(required string serviceName, struct data:{}){
 			try {
 				return variables.spirit.services[arguments.serviceName];
 			}
@@ -195,10 +195,10 @@
 				return service;
 			}
 		}
-		public string function getSetting(string key){
+		public string function getSetting(required string key){
 			return variables.spirit.settings[arguments.key];
 		}
-		public string function post(string key, string default:""){
+		public string function post(required string key, string default:""){
 			try {
 				var result = form[arguments.key];
 				if(IsNumeric(arguments.default))
@@ -241,7 +241,7 @@
 			}
 			return result;
 		}
-		public any function extend(data){
+		public any function extend(required struct data){
 			for (local.key IN arguments.data) {
 				variables[key] = this[key] = arguments.data[key];
 			}
@@ -291,7 +291,7 @@
 			else
 				return variables.event.title;
 		}
-		public void function header(numeric statuscode, string statustext:""){
+		public void function header(required numeric statuscode, string statustext:""){
 			header statuscode=arguments.statuscode statustext=arguments.statustext;
 		}
 
