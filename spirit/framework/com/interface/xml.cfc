@@ -14,20 +14,18 @@
 		<cfargument name="viewName" type="string" />
 		<cfscript>
 			var myxml = this.readXML();
-			var views = XMLSearch(myxml, "//view");
-			var lis = StructKeyList(views[1].xmlattributes);
+			var view = XMLSearch(myxml, "//view[@name=#arguments.viewName#]");
+			
+			var lis = "id,id_view,alias,controller,fieldnames,label,layout,name,priority,title,view,visibility";
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#views#" index="inx">	
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif (myViewItem.name EQ arguments.viewName) >
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-				<cfbreak />
-			</cfif>					
-		</cfloop>
+		<cfif ArrayLen(view) >
+			<cfset QueryAddRow(result) />
+			<cfloop list="#lis#" index="arg">
+				<cfset QuerySetCell(result, arg, view.XmlAttributes[arg]) />
+			</cfloop>
+			<cfbreak />
+		</cfif>
 		<cfreturn result />
 	</cffunction>
 	<cffunction name="getViewByID" output="no" returntype="query" access="public">
