@@ -1,4 +1,4 @@
 Distributed under GPL-3.0 license
-Copiright: Serge Droganov
-serge@droganov.ru
+Copiright: Sergei Droganov
+sergei@droganov.ru
 2012
