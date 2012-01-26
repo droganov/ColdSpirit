@@ -1,0 +1,4 @@
+Distributed under GPL-3.0 license
+Copiright: Serge Droganov
+serge@droganov.ru
+2012
