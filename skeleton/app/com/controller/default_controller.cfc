@@ -4,6 +4,7 @@
 		public struct function onBeforeEvent(struct e){
 			var result = {};
 			e.t.css("/rc/css/style.css");
+			e.t.js("/rc/js/respond.js");
 			e.t.js("/rc/js/jquery.js");
 			e.t.js("/rc/js/js.js");
 			
