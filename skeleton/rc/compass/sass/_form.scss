@@ -1,0 +1,31 @@
+label {font-weight:normal;}
+fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
+fieldset, #IE8#HACK {padding-top:1.4em;}
+legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
+	background-color:#fff;border:1px solid $input-border-color; color:$input-text-color;
+	@include border-radius($input-border-radius);
+	@include box-shadow($input-shadow-params);
+	@include transition-property(box-shadow);
+	@include transition-duration(.3s);
+	@include transition-timing-function(ease-out);
+}
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus, input.text:focus, input.title:focus, textarea:focus {
+	border-color:$input-focus-border-color;
+	@include box-shadow($input-focus-shadow-params);
+}
+
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:-5px; margin-bottom:10px; padding:5px;}
+select{height: 2.45em; background: #fff; background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff));}
+form.inline {line-height:3;}
+form.inline p {margin-bottom:0;}
+.error, .alert, .notice, .success, .info {padding:0.8em;margin-bottom:1em;border:2px solid #ddd;}
+.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.error a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}
