@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[.slideUp(${1/(^[0-9]+$)|.+/(?1::')/}${1:slow/400/fast}${1/(^[0-9]+$)|.+/(?1::')/}, function() {
+	${0://Stuff to do *after* the animation takes place};
+});
+]]></content>
+	<tabTrigger>.slideUp</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

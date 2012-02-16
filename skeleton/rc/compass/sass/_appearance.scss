@@ -1,6 +1,9 @@
+// Tags
 a{color:$link-color;}
 a:hover {color:$link-hover-color;}
 a:visited {color:$link-visited-color;}
+
+
 
 body{color:$body-text-color; font-family:$sans; font-size:relative-unit(10px);}
 
@@ -15,11 +18,15 @@ hr {background:$hr-color;color:$hr-color;clear:both;float:none;width:100%;height
 hr.space {background:#fff;color:#fff;visibility:hidden;}
 
 
-
+// Classes
 .bottom {margin-bottom:0;padding-bottom:0;}
 .box {padding:1.5em;margin-bottom:1.5em;background:#e5eCf9;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
 .hide{display:none;}
+.local{text-decoration:none; border-bottom:1px dotted;}
+.nowrap{white-space:nowrap;}
 .top {margin-top:0;padding-top:0;}
+
+.rub{@extend .b-rub;}

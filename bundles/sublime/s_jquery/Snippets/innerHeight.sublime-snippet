@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[.innerHeight()$0]]></content>
+	<tabTrigger>.innerHeight</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

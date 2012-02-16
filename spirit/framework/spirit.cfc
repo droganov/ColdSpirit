@@ -125,7 +125,7 @@
 		public void function abort(){
 			abort;
 		}
-		public void function ajaxProtect(){
+		public void function ajaxOnly(){
 			if(NOT StructKeyExists(GetHttpRequestData().headers,"x-requested-with") OR GetHttpRequestData().headers["x-requested-with"] NEQ "XMLHttpRequest")
 				this.abort();
 		}

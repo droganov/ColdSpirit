@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[.ajaxStart(function() {
+  ${1://stuff to do when an AJAX call is started and no other AJAX calls are in progress};
+});
+$0]]></content>
+	<tabTrigger>.ajaxStart</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

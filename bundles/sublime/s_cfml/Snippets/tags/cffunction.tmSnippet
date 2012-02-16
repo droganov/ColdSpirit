@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;cffunction name="$1" output="${2:no}" returntype="${3:[any,array,binary,boolean,date,guid,numeric,query,string,struct,uuid,variableName,void,xml]}"${4: access="${5:private,package,public,remote}"}&gt;
+	$0
+&lt;/cffunction&gt;</string>
+	<key>name</key>
+	<string>cffunction</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>tabTrigger</key>
+	<string>cffunction</string>
+	<key>uuid</key>
+	<string>AB4A8782-7466-4B5D-A180-96E0BD19C050</string>
+</dict>
+</plist>

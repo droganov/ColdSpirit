@@ -24,7 +24,7 @@
 			<views>
 				<cfsilent>
 					<cfscript>
-						var children = this.getView(name).getViews("all");
+						var children = this.getView(name).fetchViews("all");
 					</cfscript>
 				</cfsilent>
 				<cfloop query="children">

@@ -116,18 +116,6 @@
 		public string function getDefaultStateName(){
 			return variables.defaultStateName;
 		}
-		public query function getViews(visibility:"visible"){
-			try {
-				var result = variables.views[arguments.visibility];
-			}
-			catch(Any e) {
-				var interfaceObj = this.getInterface();
-				var viewID = this.get("id");
-				var result = interfaceObj.fetchChildViews(viewID, arguments.visibility);
-				variables.views[arguments.visibility] = result;
-			}
-			return result;
-		}
 		public state function getState(stateName:this.getDefaultStateName()){
 			var result = variables.stateStack[arguments.stateName];
 			return result;
@@ -294,7 +282,7 @@
 			return CreateObject("component", interface).init(variables.settings);
 		}
 		private numeric function getNextPriority(){
-			var result = this.getViews();
+			var result = this.fetchViews();
 			result = ValueList(result.priority);
 			result = ListToArray(result);
 			result = ArrayMax(result) + 1;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>do {
+	${1:x = x + 1;}
+}
+while (${2:x GTE 10});</string>
+	<key>name</key>
+	<string>cfscript: do while</string>
+	<key>scope</key>
+	<string>source.cfscript</string>
+	<key>tabTrigger</key>
+	<string>do</string>
+	<key>uuid</key>
+	<string>1D83CF2E-7222-40B2-9743-76EBD944A63E</string>
+</dict>
+</plist>

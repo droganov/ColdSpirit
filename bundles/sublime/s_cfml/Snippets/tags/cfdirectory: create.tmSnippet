@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;cfdirectory action="create" directory="${1:#${2:ExpandPath(${3:"$4"})}#}"${5: mode="${6:644}"} /&gt;$0</string>
+	<key>name</key>
+	<string>cfdirectory: create</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>tabTrigger</key>
+	<string>cfdirectory</string>
+	<key>uuid</key>
+	<string>CE7629C9-BC9A-4591-83D0-67909B0FB0BE</string>
+</dict>
+</plist>
