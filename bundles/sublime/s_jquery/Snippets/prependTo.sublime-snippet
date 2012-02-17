@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[.prependTo('${1:selector expression}')$0]]></content>
+	<tabTrigger>.prependTo</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

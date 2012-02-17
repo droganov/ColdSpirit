@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[.contents()$0]]></content>
+	<tabTrigger>.contents</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

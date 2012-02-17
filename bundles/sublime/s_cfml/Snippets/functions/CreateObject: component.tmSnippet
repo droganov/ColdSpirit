@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>CreateObject("component", ${1:"$2"})$0</string>
+	<key>name</key>
+	<string>CreateObject: component</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>tabTrigger</key>
+	<string>CreateObject</string>
+	<key>uuid</key>
+	<string>22915BFB-68A8-4E72-AABD-8214884B041F</string>
+</dict>
+</plist>

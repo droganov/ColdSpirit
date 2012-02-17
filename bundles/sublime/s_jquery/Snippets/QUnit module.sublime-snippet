@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[module('${1:module name}'${2:, {${6/(.+)/(?1:
+  setup\: function\(\) {
+    :)/}${6:// setup for $1 }${6/(.+)/(?1:
+  }:)/}${7/(.+)/(?1:,
+  teardown\: function\(\) {
+    :)/}${7://teardown for $1}${7/(.+)/(?1:
+  }:)/}
+\}});
+$0]]></content>
+	<tabTrigger>module</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

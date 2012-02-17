@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>[ -f "$TM_NEW_FILE" ] ||  perl -pe 's/\$\{([^}]*)\}/$ENV{$1}/g' &lt;index.html &gt;"$TM_NEW_FILE"</string>
+	<key>extension</key>
+	<string>cfm</string>
+	<key>name</key>
+	<string>cfm</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>uuid</key>
+	<string>3F3C517C-5302-442E-AA88-45943DCD00BB</string>
+</dict>
+</plist>

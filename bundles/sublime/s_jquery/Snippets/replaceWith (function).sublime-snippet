@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[.replaceWith(function(index, currentContents) {
+  ${1:return ${2:something};}
+})]]></content>
+	<tabTrigger>. replaceWith</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

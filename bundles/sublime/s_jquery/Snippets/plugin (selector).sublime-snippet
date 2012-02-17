@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[(function(\$) {
+  \$.extend(\$.expr[':'], {
+    ${1:selectorName}: function(element, index, matches, set) {
+      $0
+      return something;
+    }
+  });
+})(jQuery);
+]]></content>
+	<tabTrigger>plugin</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

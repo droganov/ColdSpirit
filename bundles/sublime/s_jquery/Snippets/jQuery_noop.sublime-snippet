@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[jQuery.noop()${0:;}${1:}]]></content>
+	<tabTrigger>jQuery.noop</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>My: ColdSpirit</string>
+	<key>ordering</key>
+	<array>
+		<string>2E45F253-AA94-449A-A38B-E98E34067DEB</string>
+		<string>29BDC5A7-2CCA-4D68-8A09-9B50F1A58641</string>
+		<string>F49F7B53-9851-429D-831F-42BD4B2297F2</string>
+	</array>
+	<key>uuid</key>
+	<string>00D0B719-B103-4893-8A73-9DDBAF6528ED</string>
+</dict>
+</plist>

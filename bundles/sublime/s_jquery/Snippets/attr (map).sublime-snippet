@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[.attr({
+  ${1/^([^'"].+-.+)$|.+/(?1:':)/}${1:attribute1}${1/^([^'"].+-.+[^'"])$|.+/(?1:':)/}: ${3:'${2:value1}'}${4/([^,]).*|.+/(?1:,
+  :)/m}${4:attribute2: 'value2'}
+})$0]]></content>
+	<tabTrigger>.attr</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

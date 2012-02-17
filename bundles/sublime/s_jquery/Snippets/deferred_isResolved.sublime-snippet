@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[.isResolved()$0]]></content>
+	<tabTrigger>.isResolved</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

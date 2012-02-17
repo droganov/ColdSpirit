@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;cfdirectory action="rename" directory="${1:#${2:ExpandPath(${3:"$4"})}#}" newDirectory="${5:newName}" /&gt;$0</string>
+	<key>name</key>
+	<string>cfdirectory: rename</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>tabTrigger</key>
+	<string>cfdirectory</string>
+	<key>uuid</key>
+	<string>23372210-E228-49BD-8564-37030D8EC1A0</string>
+</dict>
+</plist>

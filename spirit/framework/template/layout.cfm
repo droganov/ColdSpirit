@@ -10,6 +10,7 @@
 	<title>#title()#</title>
 	#event.target.css()#
 	#event.target.js()#
+	<!--[if lt IE 8]><link rel="stylesheet" href="/rc/css/ie.css" type="text/css" /><![endif]-->
 	<!---
 		This script enables structural HTML5 elements in old IE.
 		http://code.google.com/p/html5shim/

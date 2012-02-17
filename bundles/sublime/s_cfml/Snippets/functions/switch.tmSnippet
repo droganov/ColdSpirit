@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;switch ($1)$0&gt;</string>
+	<key>name</key>
+	<string>switch</string>
+	<key>scope</key>
+	<string>text.html.cfm.tag</string>
+	<key>uuid</key>
+	<string>A31ADC41-629D-48B8-9F68-2291BD2BBF99</string>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;cfdirectory action="delete" directory="${1:#${2:ExpandPath(${3:"$4"})}#}"${5: recurse="${6:yes}"} /&gt;$0</string>
+	<key>name</key>
+	<string>cfdirectory: delete</string>
+	<key>scope</key>
+	<string>text.html.cfm</string>
+	<key>tabTrigger</key>
+	<string>cfdirectory</string>
+	<key>uuid</key>
+	<string>1D17D230-B663-499A-A424-F1C02F62D777</string>
+</dict>
+</plist>

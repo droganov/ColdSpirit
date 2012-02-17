@@ -60,7 +60,10 @@
 				var viewUrlPosition = this.getSetting("viewUrlPosition");
 				var aliasName = view.get("alias");
 				e.get.key[viewUrlPosition] = aliasName;
-				ListSetAt(url.vars, viewUrlPosition, aliasName, "/");
+				
+				ListLen(url.vars, "/")
+					? ListSetAt(url.vars, viewUrlPosition, aliasName, "/")
+					: url.vars = aliasName;
 				try{
 					view = e.currentView	= this.getView(aliasName);
 				}
@@ -122,7 +125,7 @@
 		public void function abort(){
 			abort;
 		}
-		public void function ajaxProtect(){
+		public void function ajaxOnly(){
 			if(NOT StructKeyExists(GetHttpRequestData().headers,"x-requested-with") OR GetHttpRequestData().headers["x-requested-with"] NEQ "XMLHttpRequest")
 				this.abort();
 		}

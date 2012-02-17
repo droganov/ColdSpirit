@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[\$.boxModel]]></content>
+	<tabTrigger>$.boxModel</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>

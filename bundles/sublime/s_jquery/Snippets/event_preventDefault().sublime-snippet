@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[${1:event}.preventDefault();$0]]></content>
+	<tabTrigger>ep</tabTrigger>
+	<scope>source.js, source.coffee</scope>
+</snippet>
