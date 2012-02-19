@@ -45,7 +45,7 @@
 					</div>
 					<div class="center p10">
 						<div class="addView rc6 hand" onclick="loadData('{dsMyData::view}', 'newView');" title="Add View"><span class="addIcon">+</span>&nbsp;Add</div>
-						<div class="deleteView dropView">
+						<div class="deleteView dropView draggableState">
 							<div class="bgDeleteView rc6">&rarr; Delete &larr;</div>
 						</div>
 					</div>
@@ -150,7 +150,7 @@
 				<div spry:when="'{dsMyData::@type}' == 'edit'" class="panel noDropView rc6" id="editView">
 					<table cellpadding="0" cellspacing="5" class="w100">
 					<tr>
-						<td class="center">View: {dsMyData::name}</td>
+						<td class="center">View: <span id="editViewName">{dsMyData::name}</span></td>
 					</tr>
 					<tr>
 						<td class="p5">
@@ -252,8 +252,8 @@
 										<td class="label grey" style="padding-top:.8em;">Default &rarr;</td>
 										<td>
 											<div spry:repeat="dsViewStates">
-												<div spry:hover="hover" class="p6_3 hand {dsViewStates::@selected} {dsViewStates::@visibility} rc6" onclick="loadData('{dsMyData::name}', 'edit', 'state', '{dsViewStates::@name}');">
-													<span>{dsViewStates::@name}&nbsp;</span>
+												<div spry:hover="hover" class="stateDiv draggableState p6_3 hand {dsViewStates::@selected} {dsViewStates::@visibility} rc6" onclick="loadData('{dsMyData::name}', 'edit', 'state', '{dsViewStates::@name}');">
+													<span class="stateName">{dsViewStates::@name}&nbsp;</span>
 													<span class="small relative">
 														<sup spry:if="'{dsViewStates::@state}'.length" class="absolute ot grey">
 															&larr;&nbsp;{dsViewStates::@state}
@@ -263,6 +263,7 @@
 														</sub>
 													</span>
 													<div spry:if="'{dsViewStates::@visibility}' == 'locked'" class="locked"><img src="f.cfm?f=modules/admin/images/icons/locked.png.cfm" width="9" height="13" alt="" /></div>
+												</div>
 											</div>
 										</td>
 									</tr>
@@ -412,7 +413,7 @@
 					<div class="panel rc6">
 						<table cellpadding="0" cellspacing="5" class="w100">
 							<tr>
-								<td class="center">State: {dsState::name}</td>
+								<td class="center">State: <span id="editStateName">{dsState::name}</span></td>
 							</tr>
 							<tr>
 								<td class="p5">
@@ -830,7 +831,7 @@
 		</table>
 		<script type="text/javascript">
 			j("#" + lastId).focus();
-			j(".childView").draggable({
+			j(".childView, .draggableState").draggable({
 				helper: 'clone',
 				revert: true,
 				revertDuration: 150,
@@ -839,38 +840,63 @@
 				opacity: 1,
 				delay: 20,
 				start: function (ev, ui){
-					j("body").addClass("startDrag");
-					j("body > div.childView").removeClass("dropable");
-					j(this).addClass("noDropView");
-					disableChildren(j(this).text());
-					j(".dropView:not(.noDropView)").droppable({
-						accept: ".dropView",
-						activeClass: 'dropable',
-						hoverClass: "dragOver",
-						drop: function (ev, ui){
-							var target = j(this);
-							var viewName = ui.draggable.text().trim();
-							if (j(this).is(".deleteView")){
-								deleteView(viewName);
-							}
-							else{
-								if (target.is(".openView")) {
-									var targetViewName = target.text().trim();
-									placeAfter = "";
+					if(j(this).hasClass("childView"))
+						{
+							j("body").addClass("startDrag");
+							j("body > div.childView").removeClass("dropable");
+							j(this).addClass("noDropView");
+							disableChildren(j(this).text());
+							j(".dropView:not(.noDropView)").droppable({
+								accept: ".dropView",
+								activeClass: 'dropable',
+								hoverClass: "dragOver",
+								drop: function (ev, ui){
+									var target = j(this);
+									var viewName = ui.draggable.text().trim();
+									if (j(this).is(".deleteView")){
+										deleteView(viewName);
+									}
+									else{
+										if (target.is(".openView")) {
+											var targetViewName = target.text().trim();
+											placeAfter = "";
+										}
+										else {
+											var targetViewName = getParentView(target.text().trim()).text().trim();
+											var placeAfter = target.text().trim();
+										}
+										moveView(viewName, targetViewName, placeAfter);
+									}
 								}
-								else {
-									var targetViewName = getParentView(target.text().trim()).text().trim();
-									var placeAfter = target.text().trim();
+							});
+					}
+					else {
+							j("body").addClass("startStateDrag");
+							j("body > div.childView").removeClass("dropable").addClass("noDropView");
+							j(this).addClass("noDropState");
+							j(".draggableState:not(.noDropState)").droppable({
+								accept: ".draggableState",
+								activeClass: 'dropable',
+								hoverClass: "dragOver",
+								drop: function (ev, ui){
+									var target = j(this);
+									var viewName = j("#editViewName").text().trim();
+									var stateName1 = j(".stateName",ui.draggable).text().trim();
+									var stateName2 = j(".stateName",target).text().trim();
+									if (j(this).is(".deleteView")){
+										deleteState(viewName, stateName1);
+									}
+									else{
+										moveState(viewName, stateName1, stateName2);
+									}
 								}
-								moveView(viewName, targetViewName, placeAfter);
-							}
-						}
-					});
+							});
+					}
 				},
 				stop: function(ev, ui) {
 					j("div").droppable("destroy");
-					j("body").removeClass("startDrag");
-					j(this).removeClass("noDropView");
+					j("body").removeClass("startDrag startStateDrag");
+					j(this).removeClass("noDropView noDropState");
 					enableChildren();
 				}
 			});

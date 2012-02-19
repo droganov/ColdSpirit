@@ -193,6 +193,7 @@ function getViewByName(view) {
 function getParentView(view){
 	return j("div.openView", getViewByName(view).parent().parent());
 }
+
 function getParentViewName(view){
 	var viewName = getParentView(view).text().trim();
 	return(viewName);
@@ -216,6 +217,39 @@ function deleteView(view){
 				}
 		})
 	}
+}
+function deleteState(viewName, stateName){
+	var viewName = viewName.trim();
+	var stateName = stateName.trim();
+	if(confirm("Delete state? You can not undo this action.")){
+		j.post("modules/admin/form/save.cfm?a=deleteState", {
+			viewName: viewName,
+			stateName: stateName
+			}, function(result){
+				j("div").droppable("destroy");
+				if(parseInt(result)) {
+					if(j("#editStateName").text().trim() == stateName) loadData(viewName);
+					else reLoadData();
+				}
+				else alert(result);
+		})
+	}
+}
+function moveState(viewName, stateName1, stateName2){
+	var viewName = viewName.trim();
+	var stateName1 = stateName1.trim();
+	var stateName2 = stateName2.trim();
+	j.post("modules/admin/form/save.cfm?a=moveState", {
+		viewName: viewName,
+		stateName1: stateName1,
+		stateName2: stateName2
+		}, function(result){
+			j("div").droppable("destroy");
+			if(parseInt(result)) {
+				reLoadData();
+			}
+			else alert(result);
+	})
 }
 
 function setViewTemplate(){

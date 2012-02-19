@@ -5,7 +5,6 @@
 			variables.settings			= arguments.settings;
 			variables.data				= this.getData();
 			variables.states			= {};
-			variables.views				= {};
 			variables.stateStack		= {};
 			variables.locked			= this.get("visibility") EQ "locked";
 			variables.visible			= this.get("visibility") EQ "visible";
@@ -188,9 +187,35 @@
 			var state = this.getState();
 			return state.insert(arguments.data);
 		}
+		public void function deleteState(required string stateName){
+			var states = fetchStates("all");
+			if(states.recordCount LTE 1) throw("You can not delete the last state.");
+			if(NOT Len(arguments.stateName)) throw("Name of the state is not set.");
+			if(NOT this.hasState(arguments.stateName)) throw("There is no such state.");
+			var interfaceObj = this.getInterface();
+			var state = this.getState(arguments.stateName);
+			interfaceObj.deleteState(state.id);
+			this.reset();
+		}
+		public void function moveState(required string stateName1, required string stateName2) {
+			if(NOT this.hasState(arguments.stateName1)) throw("There is no such state "&arguments.stateName1);
+			if(NOT this.hasState(arguments.stateName2)) throw("There is no such state "&arguments.stateName2);
+			var states = this.fetchStates("all");
+			var priority = 1;
+			for(var k=1;k LTE states.recordCount;k++) {
+				if(states.name[k] EQ arguments.stateName1) continue;
+				this.getState(states.name[k]).update({priority:priority});
+				priority++;
+				if(states.name[k] EQ arguments.stateName2) {
+					this.getState(arguments.stateName1).update({priority:priority});
+					priority++;
+				}
+			}
+			this.reset();
+		}
 		public void function move(required string targetViewName, required string placeAfter){
 			var targetObj = this.getViewByName(arguments.targetViewName);
-			if(NOT targetObj.hasAncestor(this.get("name"))) {
+//			if(NOT targetObj.hasAncestor(this.get("name"))) {
 				var mySublings = targetObj.fetchViews("all");
 				if(Len(arguments.placeAfter)) {
 					var myPriority = CreateObject("component", "view").init(arguments.placeAfter, variables.settings).get("priority") + 1;
@@ -220,7 +245,7 @@
 				f.priority = myPriority;
 				f.id_view = targetObj.get("id");
 				this.update(f);
-			}
+//			}
 		}
 		public void function reset(){
 			var spirit = CreateObject("component", "boot").init(variables.settings);

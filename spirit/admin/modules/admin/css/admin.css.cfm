@@ -92,12 +92,12 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 	-khtml-border-radius: 6px;
 	border-radius: 6px;}
 .addView:hover {border-color:#fff;}
-.childView .dropLine, .startDrag .addView {
+.childView .dropLine, .startDrag .addView, .startStateDrag .addView {
 	display:none;
 }
 
 
-.startDrag div#menu, .startDrag div.noDropView, .startDragRouteTemplate .views, .startDragRouteTemplate #editView, .startDragRouteTemplate #menu {
+.startStateDrag .noDropState, .startDrag div#menu, .startDrag div.noDropView, .startDragRouteTemplate .views, .startDragRouteTemplate #editView, .startDragRouteTemplate #menu {
 	filter:alpha(opacity=10);
 	-moz-opacity:.1;
 	opacity:.1;
@@ -118,7 +118,7 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 }
 
 
-.startDrag .deleteView{
+.startDrag .deleteView, .startStateDrag .deleteView {
 	display:block;
 }
 
@@ -137,6 +137,10 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 	position:absolute;
 	top:34px;
 	display:block;
+}
+.dragOver.stateDiv {
+	margin-bottom:-1px;
+	border-bottom:1px solid #f37f7b;
 }
 
 .views .hover {
@@ -213,6 +217,9 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 .panel .blueDisplay .hover {
 	background:#f5f5dc;
 }
+.startStateDrag .panel .blueDisplay .hover {
+	background:none;
+}
 .panel .blueDisplay .selected {
 	background:#B8BFC7;
 }
@@ -274,7 +281,6 @@ div.visibility div {
 .panel .yellowDisplay .hover {
 	background:#EDDD68;
 }
-
 
 div.visibility div.v_visible, div.visibility div.h_hidden, div.visibility div.l_locked, div.visibility div.active {
 	background:#eddd68;

@@ -108,7 +108,7 @@
 			for (local.i=1; i LTE views.recordcount; i=i+1) {
 				var viewName = views.name[i];
 				var viewObj = createObject("component", "view").init(viewName, arguments.settings);
-				StructInsert(viewStack, viewName, viewObj);
+				if(NOT StructKeyexists(viewStack,viewName)) StructInsert(viewStack, viewName, viewObj);
 			}
 			return viewStack;
 		}
