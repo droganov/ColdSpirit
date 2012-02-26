@@ -73,6 +73,22 @@
 				}
 				break;
 			}
+			case "deleteState" :{
+				try{
+					this.getView(form.viewName).deleteState(form.stateName);
+				}catch(any e) {
+					var myResult = e.message;
+				}
+				break;
+			}
+			case "moveState" :{
+				try{
+					this.getView(form.viewName).moveState(form.stateName1,form.stateName2);
+				}catch(any e) {
+					var myResult = e.message;
+				}
+				break;
+			}
 			case "updateState":{
 				this.getView(form.viewName).getState(form.oldName).update(form);
 				break;

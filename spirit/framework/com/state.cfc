@@ -82,7 +82,8 @@
 				arguments.data.visibility = "visible";
 			if(NOT StructKeyExists(arguments.data, "has_text"))
 				arguments.data.has_text = 0;
-			if(variables.view.hasState(arguments.data.name) AND arguments.data.name NEQ this.get("name"))
+				
+			if(variables.view.hasState(arguments.data.name) AND (arguments.data.name NEQ this.get("name")))
 				throw('State ' & '"' & arguments.data.name & '"' & ' already exists!');
 			var fields = QueryNew("field,fieldValue");
 			var validFields = "id_view,priority,has_text,visibility,name,label,title,state,exit_state";

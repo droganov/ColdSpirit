@@ -3,6 +3,7 @@
 	<cffunction name="init" output="no" returntype="struct" access="public">
 		<cfargument name="settings" type="struct" />
 		<cfset this.dsn = arguments.settings.dsn />
+		<cfset this.settings = arguments.settings />
 		<cfset this.config_path = arguments.settings.root & "/app/conf/config.cfm" />
 		<cfset var result = this />
 		<cfreturn result />
@@ -14,40 +15,32 @@
 		<cfargument name="viewName" type="string" />
 		<cfscript>
 			var myxml = this.readXML();
-			var views = XMLSearch(myxml, "//view");
-			var lis = StructKeyList(views[1].xmlattributes);
+			var view = XMLSearch(myxml, "//view[@name = '#arguments.viewName#']");
+			var lis = this.getViewFieldsList();
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#views#" index="inx">	
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif (myViewItem.name EQ arguments.viewName) >
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-				<cfbreak />
-			</cfif>					
-		</cfloop>
+		<cfif ArrayLen(view) >
+			<cfset QueryAddRow(result) />
+			<cfloop list="#lis#" index="arg">
+				<cfset QuerySetCell(result, arg, view[1].XmlAttributes[arg]) />
+			</cfloop>
+		</cfif>
 		<cfreturn result />
 	</cffunction>
 	<cffunction name="getViewByID" output="no" returntype="query" access="public">
 		<cfargument name="id" type="numeric" />
 		<cfscript>
 			var myxml = this.readXML();
-			var views = XMLSearch(myxml, "//view");
-			var lis = StructKeyList(views[1].xmlattributes);
+			var view = XMLSearch(myxml, "//view[@id='#arguments.id#']");
+			var lis = this.getViewFieldsList();
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#views#" index="inx">
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif (val(myViewItem.id) EQ val(arguments.id)) >
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-				<cfbreak />
-			</cfif>
-		</cfloop>
+		<cfif ArrayLen(view) >
+			<cfset QueryAddRow(result) />
+			<cfloop list="#lis#" index="arg">
+				<cfset QuerySetCell(result, arg, view[1].XmlAttributes[arg]) />
+			</cfloop>
+		</cfif>
 		<cfreturn result />
 	</cffunction>
 	<cffunction name="fetchAllViews" output="no" returntype="query" access="public">
@@ -56,7 +49,7 @@
 			var views = XMLSearch(myxml, "//view");
 			var result = QueryNew("id,id_view,name");
 		</cfscript>
-		<cfloop array="#views#" index="inx">	
+		<cfloop array="#views#" index="inx">
 			<cfset QueryAddRow(result) />
 			<cfset QuerySetCell(result,"id",inx.XmlAttributes.id) />
 			<cfset QuerySetCell(result,"id_view",inx.XmlAttributes.id_view) />
@@ -68,23 +61,22 @@
 		<cfargument name="id_view" type="numeric" />
 		<cfargument name="visibility" type="string" default="visible" />
 		<cfscript>
-			var own_state = ListFindNoCase("visible,hidden,locked", arguments.visibility);
+			var own_state = ListValuecountnocase("visible,hidden,locked", arguments.visibility);
 			var myxml = this.readXML();
-			var views = XMLSearch(myxml, "//view");
-			var lis = StructKeyList(views[1].xmlattributes);
+			var views = XMLSearch(myxml, "//view[@id_view='#arguments.id_view#']");
+			var lis = this.getViewFieldsList();
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#views#" index="inx">
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif ((NOT own_state) OR (own_state AND (myViewItem.visibility EQ arguments.visibility)))>
-			<cfif (myViewItem.id_view EQ #arguments.id_view#)>
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-			</cfif>
-			</cfif>					
-		</cfloop>
+		<cfif ArrayLen(views) >
+			<cfloop array="#views#" index="view">
+				<cfif NOT own_state OR (lCase(view.XmlAttributes.visibility) EQ lCase(arguments.visibility))>
+					<cfset QueryAddRow(result) />
+					<cfloop list="#lis#" index="arg">
+						<cfset QuerySetCell(result, arg, view.XmlAttributes[arg]) />
+					</cfloop>
+				</cfif>
+			</cfloop>
+		</cfif>
 		<cfreturn result />
 	</cffunction>
 	<cffunction name="insertView" output="no" returntype="numeric" access="public">
@@ -101,42 +93,41 @@
 		<cfparam name="arguments.data.layout" type="string" default=""/>
 		<cfparam name="arguments.data.controller" type="string" default=""/>
 		<cfparam name="arguments.data.view" type="string" default=""/>
-			<cflock name="insert_update_delete_view" timeout="300">
-			<cfscript>
-				var myxml = this.readXML();
-				var child_count = ArrayLen(myxml.config.views.xmlchildren) + 1;
-				myxml.config.views.xmlchildren[child_count] = XmlElemNew(myxml,"view");
-				var xml_attr = myxml.config.views.xmlchildren[child_count].xmlattributes;
-			</cfscript>
- 			<cfset var lis = lcase(StructKeyList(arguments.data)) />
-			<cfloop list="#lis#" index="inx">
-				<cfset xml_attr[inx] = arguments.data[inx] />
-			</cfloop> 
-			<cfset xml_attr.id = this.Free_ID(myxml,"views") />
-			<cfset this.writeXML(myxml) />
-			<cfset this.Sort_by_priority_name("views") />
+			<cflock name="spiritXMLLock" timeout="300">
+				<cfscript>
+					var myxml = this.readXML();
+					var child_count = ArrayLen(myxml.config.views.xmlchildren) + 1;
+					myxml.config.views.xmlchildren[child_count] = XmlElemNew(myxml,"view");
+					var xml_attr = myxml.config.views.xmlchildren[child_count].xmlattributes;
+					var lis = this.getViewFieldsList();
+				</cfscript>
+					<cfloop list="#lis#" index="inx">
+						<cfset myxml.config.views.xmlchildren[child_count].xmlattributes[inx] = arguments.data[inx] />
+					</cfloop>
+				<cfscript>
+					var nid = this.Free_ID(myxml,"view");
+					myxml.config.views.xmlchildren[child_count].xmlattributes.id = nid;
+					this.writeXML(myxml,"views");
+				</cfscript>
 			</cflock>
-		<cfreturn xml_attr.id />
+		<cfreturn nid/>
 	</cffunction>
 	<cffunction name="updateView" output="no" returntype="void" access="public">
 		<cfargument name="data" type="query" />
 		<cfargument name="id" type="numeric" />
 		<cflock name="insert_update_delete_view" timeout="300">
-		<cfif arguments.data.recordcount>
-			<cfscript>
-				var myxml = this.readXML();
-				var it_him = 0;
-				for(i=1;i LTE ArrayLen(myxml.config.views.xmlchildren);i=i+1)
-				if (myxml.config.views.xmlchildren[i].xmlattributes.id EQ arguments.id)  var it_him = i;
-			</cfscript>
-			<cfif it_him>
-				<cfloop query="arguments.data">
-					<cfset myxml.config.views.XmlChildren[it_him].XmlAttributes[lcase(field)] = #fieldvalue# />
-				</cfloop>
+			<cfif arguments.data.recordcount>
+				<cfscript>
+					var myxml = this.readXML();
+					var view = XMLSearch(myxml, "//view[@id='#arguments.id#']");
+				</cfscript>
+				<cfif ArrayLen(view)>
+					<cfloop query="arguments.data">
+						<cfset view[1].XmlAttributes[lcase(field)] = #fieldvalue# />
+					</cfloop>
+				</cfif>
 			</cfif>
-		</cfif>
-		<cfset this.writeXML(myxml)>
-		<cfset Sort_by_priority_name("views")>
+			<cfset this.writeXML(myxml,"views")>
 		</cflock>
 	</cffunction>
 	<cffunction name="deleteView" output="no" returntype="void" access="public">
@@ -145,7 +136,13 @@
 			<cfscript>
 				var myxml = this.readXML();
 				for (i=1; i LTE ArrayLen(myxml.config.views.XmlChildren); i=i+1) 
-				if (myxml.config.views.XmlChildren[i].XmlAttributes.id EQ arguments.idView) ArrayDeleteAt(myxml.config.views.XmlChildren,i);
+					if (myxml.config.views.XmlChildren[i].XmlAttributes.id EQ val(arguments.idView)) ArrayDeleteAt(myxml.config.views.XmlChildren,i);
+				
+				var states = XMLSearch(myxml, "//state[@id_view='#arguments.idView#']");
+				for(var k=1;k LTE ArrayLen(states);k++)
+					for (var i=1;i LTE ArrayLen(myxml.config.states.XmlChildren);i++)
+						if (myxml.config.states.XmlChildren[i].XmlAttributes.id EQ states[k].XmlAttributes.id)
+							ArrayDeleteAt(myxml.config.states.XmlChildren,i);
 				this.writeXML(myxml);
 			</cfscript>
 			</cflock>
@@ -159,20 +156,15 @@
 		<cfscript>
 			var own_state = ListFindNoCase("visible,hidden,locked", arguments.visibility);
 			var myxml = this.readXML();
-			var states = XMLSearch(myxml, "//state");
-			var lis = StructKeyList(states[1].xmlattributes);
+			var states = XMLSearch(myxml, "//state[@id_view='#arguments.id_view#'"&IIF(own_state,'" and @visibility=''"&arguments.visibility&"'']"','"]"'));
+			var lis = this.getStateFieldsList();
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#states#" index="inx">	
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif ((NOT own_state) OR (own_state AND (myViewItem.visibility EQ arguments.visibility)))>
-			<cfif (myViewItem.id_view EQ arguments.id_view) > <!--- AND ((myViewItem.visibility EQ arguments.visibility) OR (myViewItem.visibility EQ "all"))) > --->
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-			</cfif>
-			</cfif>					
+		<cfloop array="#states#" index="myStateItem">
+			<cfset QueryAddRow(result)/>
+			<cfloop list="#lis#" index="arg">
+				<cfset QuerySetCell(result, arg, myStateItem.XmlAttributes[arg])/>
+			</cfloop>
 		</cfloop>
 		<cfreturn result />
 	</cffunction>
@@ -180,43 +172,49 @@
 		<cfargument name="id" type="numeric" />
 		<cfscript>
 			var myxml = this.readXML();
-			var states = XMLSearch(myxml, "//state");
-			var lis = StructKeyList(states[1].xmlattributes);
+			var states = XMLSearch(myxml, "//state[@id='#arguments.id#']");
+			var lis = this.getStateFieldsList();
 			var result = QueryNew(lis);
 		</cfscript>
-		<cfloop array="#states#" index="inx">	
-			<cfset var myViewItem = inx.xmlattributes />
-			<cfif (myViewItem.id EQ arguments.id) >
-				<cfset QueryAddRow(result) />
-				<cfloop list="#lis#" index="arg">
-					<cfset QuerySetCell(result, arg, myViewItem[arg]) />
-				</cfloop>
-			</cfif>					
+		<cfloop array="#states#" index="myStateItem">
+			<cfset QueryAddRow(result)/>
+			<cfloop list="#lis#" index="arg">
+				<cfset QuerySetCell(result, arg, myStateItem.XmlAttributes[arg])/>
+			</cfloop>
+			<cfbreak>
 		</cfloop>
 		<cfreturn result />
 		
 	</cffunction>
 	<cffunction name="insertState" output="no" returntype="numeric" access="public">
-		<cfargument name="id_view" type="numeric" />
-		<cfparam name="id_view" type="numeric" default="0">
-		<cflock name="insert_update_state" timeout="300">
+		<cfargument name="id_view" type="numeric"/>
+		<cflock name="spiritXMLLock" timeout="300">
 			<cfscript>
-				var data = {id=0,id_view=arguments.id_view,priority=0,has_text=0,visibility="visible",name="",label="",title="",state="default_state.cfm",exit_state=""};
+				var data = {id:0,
+							id_view:arguments.id_view,
+							priority:0,
+							has_text:0,
+							visibility:"visible",
+							name:"default",
+							label:"",
+							title:"",
+							state:"default_state.cfm",
+							exit_state:""};
 
 				var myxml = this.readXML();
 				var child_count = ArrayLen(myxml.config.states.xmlchildren) + 1;
 				myxml.config.states.xmlchildren[child_count] = XmlElemNew(myxml,"state");
 				var xml_attr = myxml.config.states.xmlchildren[child_count].xmlattributes;
+				var lis = this.getStateFieldsList();
 			</cfscript>
- 			<cfset var lis = lcase(StructKeyList(data)) />
 			<cfloop list="#lis#" index="inx">
-				<cfset xml_attr[inx] = data[inx] />
-			</cfloop> 
-			<cfset xml_attr.id = this.Free_ID(myxml,"states") />
-			<cfset this.writeXML(myxml) />
-			<cfset this.Sort_by_priority_name("states") />
-		</cflock>				
-		<cfreturn xml_attr.id />
+				<cfset myxml.config.states.xmlchildren[child_count].xmlattributes[inx] = data[inx]/>
+			</cfloop>
+			<cfset var nid = this.Free_ID(myxml,"state")/>
+			<cfset myxml.config.states.xmlchildren[child_count].xmlattributes.id = nid/>
+			<cfset this.writeXML(myxml,"states")/>
+		</cflock>
+		<cfreturn nid />
 	</cffunction>
 	<cffunction name="updateState" output="no" returntype="void" access="public">
 		<cfargument name="data" type="query" />
@@ -225,32 +223,29 @@
 			<cfif arguments.data.recordcount>
 				<cfscript>
 					var myxml = this.readXML();
-					var it_him = 0;
-					for(i=1;i LTE ArrayLen(myxml.config.states.xmlchildren);i=i+1)
-					if (myxml.config.states.xmlchildren[i].xmlattributes.id EQ arguments.id)  var it_him = i;
+					var state = XMLSearch(myxml, "//state[@id='#arguments.id#']");
 				</cfscript>
-				<cfif it_him>
+				<cfif ArrayLen(state)>
 					<cfloop query="arguments.data">
-						<cfset myxml.config.states.XmlChildren[it_him].XmlAttributes[lcase(field)] = #fieldvalue# />
+						<cfset state[1].XmlAttributes[lcase(field)] = #fieldvalue# />
 					</cfloop>
 				</cfif>
 			</cfif>
-			<cfset this.writeXML(myxml)>
+			<cfset this.writeXML(myxml,"states")>
 		</cflock>
-		<cfset Sort_by_priority_name("states")>
 	</cffunction>
 	<cffunction name="deleteState" output="no" returntype="void" access="public">
 		<cfargument name="id" type="numeric" />
 		<cflock name="insert_update_state" timeout="300">
 				<cfscript>
 					var myxml = this.readXML();
-					var it_him = 0;
-					for(i=1;i LTE ArrayLen(myxml.config.states.xmlchildren);i=i+1)
-					if (myxml.config.states.xmlchildren[i].xmlattributes.id EQ arguments.id)  var it_him = i;
+					for (var i=1; i LTE ArrayLen(myxml.config.states.XmlChildren); i=i+1)
+						if (myxml.config.states.XmlChildren[i].XmlAttributes.id EQ arguments.id)
+							{
+								ArrayDeleteAt(myxml.config.states.XmlChildren,i);
+								break;
+							}
 				</cfscript>
-				<cfif it_him>
-					<cfset arrayDeleteAt(myxml.config.states.XmlChildren,it_him)/>
-				</cfif>
 			<cfset this.writeXML(myxml)>
 		</cflock>
 	</cffunction>
@@ -260,70 +255,70 @@
 		<cfargument name="myxml" type="xml" required="true">
 		<cfargument name="obj" type="String" required="true">
 		<cflock name="New_ID_sync" timeout="300">
-		<cfscript>
-			var ret_id = 1;
-			var IDS = StructNew();
-			for(i=1;i LTE ArrayLen(myxml.config[#obj#].XmlChildren);i=i+1) 
-			{
-				var tem = myxml.config[#obj#].XmlChildren[i].XmlAttributes.id;
-				IDS["#tem#"] = true;
-			}
-				while(StructKeyExists(IDS,#ret_id#)) ret_id = ret_id +1;
-			return ret_id;
-		</cfscript>
-		</cflock>
-	</cffunction>
-	<cffunction name="Sort_by_priority_name" output="no" returntype="void" access="private">
-		<cfargument name="sort_obj" type="string" required="true" / >
-		<cflock name="Sortlock" timeout="300">
-			<cfset  var myxml = this.readXML() />
-			<cfset  var myxmlar = myxml.config[#sort_obj#].XmlChildren />
-			<cfif (ArrayLen(myxmlar) GT 1) >
-					<cfset 	var len_ar = ArrayLen(myxmlar) />
-					<cfset 	myxmlar[len_ar+1] = XmlElemNew(myxml,myxml.config[#sort_obj#].XmlChildren[1].XmlName) />
-				<cfloop list="name,priority" index="parr">	
-					<cfscript>
- 						do 
-						{ 
-						var flips = 0;	
-						for(i=1;i LTE (len_ar - 1); i=i+1) 
-							if (myxmlar[i].Xmlattributes[#parr#] GT myxmlar[i+1].Xmlattributes[#parr#])
-								{
-									myxmlar[len_ar+1].XmlAttributes = StructCopy(myxmlar[i].Xmlattributes);
-									myxmlar[i].Xmlattributes = StructCopy(myxmlar[i+1].Xmlattributes);
-									myxmlar[i+1].Xmlattributes = StructCopy(myxmlar[len_ar+1].XmlAttributes) ; 
-									flips = flips +1;
-								}
-						}
-						while (flips GT 0); 
-					</cfscript>
-				</cfloop>
-					<cfset ArrayDeleteAt(myxmlar,len_ar+1)/>
-					<cfset this.writeXML(myxml) />
-			</cfif>
+			<cfscript>
+				var ids = [];
+				var objs = XMLSearch(arguments.myxml, "//"&arguments.obj);
+				for(var inx=1;inx LTE ArrayLen(objs);inx++) ArrayAppend(ids,objs[inx].XmlAttributes.id);
+			</cfscript>
+			<cfreturn ArrayMax(ids)+1>
 		</cflock>
 	</cffunction>
 	<cffunction name="readXML" access="private" returntype="xml">
 			<cflock name="spiritXMLLock" timeout="300">
-				<cffile action="read" file="#ExpandPath(this.config_path)#" variable="arguments.temp" charset="utf-8" />
-				<cfset var myxml = XMLParse(Trim(arguments.temp)) /> 
-				<cftry>
-					<cfcatch type = "any">
-						<cfthrow message="cant open file #this.config_path#"/>
-					</cfcatch>
-				</cftry>
+				<cflock scope="application" type="exclusive" timeout="300">
+					<cfif StructKeyExists(application,this.settings.appKey) AND StructKeyExists(application[this.settings.appKey],"xml_config") AND isXMLDoc(application[this.settings.appKey].xml_config)>
+						<cfset var myxml = application[this.settings.appKey].xml_config/>
+					<cfelse>
+						<cftry>
+							<cffile action="read" file="#ExpandPath(this.config_path)#" variable="arguments.temp" charset="utf-8" />
+							<cfset var myxml = XMLParse(Trim(arguments.temp)) /> 
+							<cfcatch type = "any">
+								<cfthrow message="cant open file #this.config_path#"/>
+							</cfcatch>
+						</cftry>
+						<cfset application[this.settings.appKey].xml_config = myxml/>
+					</cfif>
+				</cflock>
 			</cflock>
 		<cfreturn myxml>
 	</cffunction>
 	<cffunction name="writeXML" access="private" returntype="void">
-		<cfargument name="myXML_to_w" type="XML">
-			<cflock name="spiritXMLLock" timeout="300">
-				<cftry>
-					<cffile action="write" file="#ExpandPath(this.config_path)#" output = "#arguments.myXML_to_w#" charset = "utf8">
-					<cfcatch type="any">
-						<cfthrow message="cant write in file #this.config_path#"/>
-					</cfcatch>
-				</cftry>
+		<cfargument name="myxml" type="XML">
+		<cfargument name="sort_type" type="string" default="">
+		<cflock name="spiritXMLLock" timeout="300">
+			<cfif Len(arguments.sort_type)>
+				<cfset myxmlar = arguments.myxml.config[arguments.sort_type].XmlChildren/>
+				<cfset 	var len_ar = ArrayLen(myxmlar)/>
+				<cfif len_ar GT 1>
+					<cfset var view = XmlElemNew(arguments.myxml,myxmlar[1].XmlName)>
+					<cfloop list="name,priority" index="parr">
+						<cfscript>
+	 						do{
+								var flips = 0;
+								for(var i=1;i LTE (len_ar - 1);i++)
+									if (myxmlar[i].Xmlattributes[parr] GT myxmlar[i+1].Xmlattributes[parr])
+										{
+											view.Xmlattributes = Structcopy(myxmlar[i].Xmlattributes);
+											myxmlar[i].Xmlattributes = StructCopy(myxmlar[i+1].Xmlattributes);
+											myxmlar[i+1].Xmlattributes = StructCopy(view.Xmlattributes);
+											flips++;
+										}
+							}while (flips); 
+						</cfscript>
+					</cfloop>
+				</cfif>
+			</cfif>
+			<cffile action="write" file="#ExpandPath(this.config_path)#" output = "#arguments.myxml#" charset = "utf8">
+			<cflock scope="application" type="exclusive" timeout="300">
+				<cfset application[this.settings.appKey].xml_config = arguments.myxml/>
 			</cflock>
+		</cflock>
+	</cffunction>
+
+	<cffunction name="getViewFieldsList" output="no" returntype="string" access="private">
+		<cfreturn "id,id_view,alias,controller,label,layout,name,priority,title,view,visibility" />
+	</cffunction>
+	<cffunction name="getStateFieldsList" output="no" returntype="string" access="private">
+		<cfreturn "id,id_view,priority,has_text,visibility,name,label,title,state,exit_state" />
 	</cffunction>
 </cfcomponent>

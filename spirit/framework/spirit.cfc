@@ -4,7 +4,7 @@
 		public void function init(struct settings:{}) {
 			variables.spirit = CreateObject("component", "com.boot").init(arguments.settings);
 		}
-		private void function bootStrap(struct settings:{}){
+		private void function bootStrap(struct settings:{}) {
 			lock scope="Application" type="readOnly" timeout="30" {
 				variables.spirit = Application[arguments.settings.appKey];
 			}
