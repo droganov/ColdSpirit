@@ -874,6 +874,7 @@
 							j("body").addClass("startStateDrag");
 							j("body > div.childView").removeClass("dropable").addClass("noDropView");
 							j(this).addClass("noDropState");
+							ui.helper.addClass("drag");
 							j(".draggableState:not(.noDropState)").droppable({
 								accept: ".draggableState",
 								activeClass: 'dropable',
@@ -894,6 +895,7 @@
 					}
 				},
 				stop: function(ev, ui) {
+					ui.helper.removeClass("drag");
 					j("div").droppable("destroy");
 					j("body").removeClass("startDrag startStateDrag");
 					j(this).removeClass("noDropView noDropState");

@@ -218,9 +218,16 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 }
 .panel input[type=submit]:hover{border:1px solid rgba(0,0,0,.45)}
 .panel input[type=submit]:active{position:relative; top:1px; left:1px;background;#439479;}
+
 .panel .blueDisplay .hover {
 	background:#f5f5dc;
 }
+.startStateDrag .stateDiv.ui-draggable.drag {
+	background:#f5f5dc;
+	width:235px;
+	padding:5px 9px;
+}
+
 .startStateDrag .panel .blueDisplay .hover {
 	background:none;
 }
