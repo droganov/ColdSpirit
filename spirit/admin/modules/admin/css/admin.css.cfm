@@ -140,7 +140,11 @@ span.addIcon {background:rgba(255, 255, 255, .3);color:#fff; padding:0 .3em;
 }
 .dragOver.stateDiv {
 	margin-bottom:-1px;
-	border-bottom:1px solid #f37f7b;
+	border-bottom:1px solid #4DAC8D;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-khtml-border-radius: 0px;
+	border-radius: 0px;
 }
 
 .views .hover {
