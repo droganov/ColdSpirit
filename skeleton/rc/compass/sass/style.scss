@@ -1,41 +1,42 @@
 @import "reset", "compass";
 
 // Colors
-$body-text-color:				#1A1A1A;
+$body-text-color:									#1A1A1A;
+$body-background-color:						#fff;
 
-$input-text-color:				$body-text-color;
-$input-border-color:			#c6ccce;
-$input-focus-border-color:		#98a8b1;
-$input-submit-background-color:	#EF3D36;
-$input-submit-text-color:		#fff;
-$input-placeholder-text-color:	#ccc;
+$input-text-color:								$body-text-color;
+$input-border-color:							#c6ccce;
+$input-focus-border-color:				#98a8b1;
+$input-submit-background-color:		#EF3D36;
+$input-submit-text-color:					#fff;
+$input-placeholder-text-color:		#ccc;
 
-$hr-color:						#ddd;
+$hr-color:												#ddd;
 
-$link-color:					#0071B4;
-$link-hover-color:				adjust-lightness($link-color, 15);
-$link-visited-color:			adjust-lightness($link-color, -18);
+$link-color:											#0071B4;
+$link-hover-color:								adjust-lightness($link-color, 15);
+$link-visited-color:							adjust-lightness($link-color, -18);
 
-$error-background-color:		#fbe3e4;
-$error-text-color:				#8a1f11;
-$error-border-color:			#fbc2c4;
-$error-link-color:				$error-text-color;
-$notice-background-color:		#fff6bf;
-$notice-text-color:				#514721;
-$notice-border-color:			#ffd324;
-$notice-link-color:				$notice-text-color;
-$success-background-color:		#e6efc2;
-$success-text-color:			#264409;
-$success-border-color:			#c6d880;
-$success-link-color:			$success-text-color;
+$error-background-color:					#fbe3e4;
+$error-text-color:								#8a1f11;
+$error-border-color:							#fbc2c4;
+$error-link-color:								$error-text-color;
+$notice-background-color:					#fff6bf;
+$notice-text-color:								#514721;
+$notice-border-color:							#ffd324;
+$notice-link-color:								$notice-text-color;
+$success-background-color:				#e6efc2;
+$success-text-color:							#264409;
+$success-border-color:						#c6d880;
+$success-link-color:							$success-text-color;
 
 // Units
-$input-border-radius:			6px;
+$input-border-radius:							6px;
 
 // Params
-$input-shadow-params:			1px 1px 2px rgba(0, 0, 0, .25);
-$input-focus-shadow-params:		0px 0px 18px rgba(87, 182, 247, .4);
-$input-submit-shadow-params:	3px 3px 3px rgba(0, 0, 0, .25);
+$input-shadow-params:							1px 1px 2px rgba(0, 0, 0, .25);
+$input-focus-shadow-params:				0px 0px 18px rgba(87, 182, 247, .4);
+$input-submit-shadow-params:			3px 3px 3px rgba(0, 0, 0, .25);
 
 // Fonts
 $sans: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;

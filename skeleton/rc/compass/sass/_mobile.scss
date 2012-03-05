@@ -4,6 +4,6 @@ $total-columns: 6;
 $column-margin: 3.2;
 $column-width: (100 - ($column-margin * ($total-columns - 1))) / $total-columns;
 
-@media screen and (min-width: 300px) and (max-width: 480px){
+@media screen and (max-width: 480px){
 	
 }
