@@ -1,4 +1,12 @@
 @import "grid/liquid";
+.ie{
+	p{margin:0 10px;}
+}
 @media screen and (min-width: 480px) and (max-width: 1020px){
-	
+	html{
+		@extend .ie;
+	}
+	html, html.ie{
+		.p{max-width:auto;}
+	}
 }

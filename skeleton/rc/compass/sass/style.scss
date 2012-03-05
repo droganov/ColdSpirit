@@ -44,7 +44,7 @@ $base-font-size: 13px;
 @include establish-baseline;
 
 
-@import "ruble", "form", "appearance", "blocks";
+@import "mixins", "ruble", "form", "appearance", "blocks";
 
 // Media queries
 @import "_highres.scss", "_lowres.scss", "_mobile.scss";
