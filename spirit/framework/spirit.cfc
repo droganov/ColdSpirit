@@ -74,8 +74,17 @@
 			
 			e.title = Len(view.get("title")) ? view.get("title") : view.get("label");
 			
-			var stateName					= this.get(this.getSetting("stateUrlPosition"),
-											  view.getDefaultStateName());
+			var stateName					= this.get(this.getSetting("stateUrlPosition"), "");
+
+			if(view.isDefaultView() AND NOT Len(stateName))
+				stateName = view.getDefaultStateName();
+
+
+			if(NOT Len(stateName))
+				this.error(404, "Not found");
+
+
+
 			try {
 				var state = e.currentState	= view.getState(stateName);
 			}
@@ -93,27 +102,27 @@
 			e.name = viewName & stateName;
 			
 			// Dispatching an Event
-			eventDispatcher = CreateObject("component", this.getSetting("controller") & view.get("controller"));
+			controller = CreateObject("component", this.getSetting("controller") & view.get("controller"));
 			
-			e.b = e.before = StructKeyExists(eventDispatcher, "onBeforeEvent")
-				? eventDispatcher["onBeforeEvent"](e)
+			e.b = e.before = StructKeyExists(controller, "onBeforeEvent")
+				? controller["onBeforeEvent"](e)
 				: {};
 				
-			e.v = e.view = StructKeyExists(eventDispatcher, viewName)
-				? eventDispatcher[viewName](e)
+			e.v = e.view = StructKeyExists(controller, viewName)
+				? controller[viewName](e)
 				: {};
 			
-			if(StructKeyExists(eventDispatcher, e.name)){
-				e.s = e.state = eventDispatcher[e.name](e);
+			if(StructKeyExists(controller, e.name)){
+				e.s = e.state = controller[e.name](e);
 			}
 			else{
-				e.s = e.state = StructKeyExists(eventDispatcher, "onDefaultEvent")
-					? eventDispatcher["onDefaultEvent"](e)
+				e.s = e.state = StructKeyExists(controller, "onDefaultEvent")
+					? controller["onDefaultEvent"](e)
 					: {};
 			}
 			
-			e.a = e.after = StructKeyExists(eventDispatcher, "onAfterEvent")
-				? eventDispatcher["onAfterEvent"](e)
+			e.a = e.after = StructKeyExists(controller, "onAfterEvent")
+				? controller["onAfterEvent"](e)
 				: {};
 			
 			// fixing unvanted variables in url
