@@ -4,7 +4,10 @@
 		this.ApplicationTimeout = CreateTimeSpan( 1, 0, 0, 0);
 		this.SessionManagement	= true;
 		this.SetClientCookies	= false;
-		
+
+		//this.sessionStorage = "cacheName";
+		//this.clientStorage = "cacheName";
+
 		// spirit settings (optional)
 		variables.spiritSettings = {
 			interface: 		"xml", // currently xml and MySQL are supported
