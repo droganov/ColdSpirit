@@ -21,10 +21,18 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Layout #template#</h1>
-		<div>
+		<header>
+			<h1>Layout #template#</h1>
+		</header>
+		<nav>
+			navigation
+		</nav>
+		<section>
 			#render("view")#
-		</div>
+		</section>
+		<footer>
+			footer
+		</footer>
 	</div>
 </body>
 </html></cfoutput>
