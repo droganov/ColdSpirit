@@ -11,7 +11,7 @@
 		VALUES(
 			<cfqueryparam value="#arguments.e.errorcode#" CFSQLType="cf_sql_integer" />,
 			<cfqueryparam value="#arguments.e.errortype#" CFSQLType="cf_sql_varchar" />,
-			<cfqueryparam value="#cgi.remote_addr#" CFSQLType="cf_sql_varchar" />,
+			<cfqueryparam value="#ip()#" CFSQLType="cf_sql_varchar" />,
 			<cfqueryparam value="#cgi.http_host#" CFSQLType="cf_sql_varchar" />,
 			<cfqueryparam value="#arguments.e.url#" CFSQLType="cf_sql_varchar" />,
 			<cfqueryparam value="#arguments.e.message#" CFSQLType="cf_sql_varchar" />,
@@ -23,6 +23,13 @@
 </cffunction>
 <cfscript>
 	cacheName = "errorLog";
+
+	function ip () {
+		return
+			Len(CGI.HTTP_X_Forwarded_For)
+				? CGI.HTTP_X_Forwarded_For
+				: CGI.Remote_Addr;
+	}
 	
 	public string function uri(){
 		var theURL = "http";
