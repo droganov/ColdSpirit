@@ -200,6 +200,18 @@
 			}
 			return this.include(arguments.blockName);
 		}
+		public any function getCached(string key, callback, numeric timeSpan:0, string cacheName){
+			try {
+				return cacheGet(arguments.key, true, arguments.cacheName);
+			}
+			catch(Any e) {
+				var result = arguments.callback();
+				len(arguments.cacheName)
+					? cachePut(arguments.key, result, arguments.timeSpan, arguments.cacheName)
+					: cachePut(arguments.key, result, arguments.timeSpan);
+			}
+			return result;
+		}
 		public any function getService(required string serviceName, struct data:{}){
 			try {
 				return variables.spirit.services[arguments.serviceName];
