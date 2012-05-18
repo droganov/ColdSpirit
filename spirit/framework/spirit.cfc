@@ -178,16 +178,25 @@
 			bean["extend"] = this["extend"];
 			return bean.extend(data);
 		}
-		public string function getBlock(required string blockName, numeric chachedWithin:0, string blockPrefix:"block"){
+		public string function getBlock(required string blockName, numeric chachedWithin:0, string blockPrefix:"block", dataProvider){
 			arguments.blockName = this.getSetting("block") & arguments.blockName & ".cfm";
 			if(arguments.chachedWithin) {
 				var cacheKey = arguments.blockPrefix & "_" & arguments.blockName;
-				if(cacheKeyExists(cacheKey)){
-					return CacheGet(cacheKey);
+
+				try {
+					cacheGet(cacheKey, true);
 				}
-				arguments.blockName = this.include(arguments.blockName);
-				CachePut(cacheKey, arguments.blockName, arguments.chachedWithin);
-				return arguments.blockName;
+				catch (e) {
+					try {
+						var data = arguments.dataProvider();
+					}
+					catch (e) {
+						var data = arguments.dataProvider;
+					}
+					arguments.blockName = this.include(arguments.blockName);
+					CachePut(cacheKey, arguments.blockName, arguments.chachedWithin);
+					return arguments.blockName;
+				}
 			}
 			return this.include(arguments.blockName);
 		}
