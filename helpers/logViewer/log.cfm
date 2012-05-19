@@ -91,7 +91,7 @@
 				<cfoutput>
 					<div class="pages">
 						<cfloop index="local.i" from="#1#" to="#result.totalPages#">
-							<a href="#cgi.script_name#?page=#i#&amp;tag=#urlEncodedFormat(url.tag)#" class="#i EQ result.currentPage#">#i#</a>
+							<a href="#cgi.script_name#?page=#i#&amp;tag=#urlEncodedFormat(url.tag)#&amp;criteria=#urlEncodedFormat(form.criteria)#" class="#i EQ result.currentPage#">#i#</a>
 						</cfloop>
 						<div class="clear"></div>
 					</div>
