@@ -205,10 +205,8 @@
 				return cacheGet(arguments.key, true, arguments.cacheName);
 			}
 			catch(Any e) {
-				var result = arguments.callback();
-				len(arguments.cacheName)
-					? cachePut(arguments.key, result, arguments.timeSpan, arguments.cacheName)
-					: cachePut(arguments.key, result, arguments.timeSpan);
+				var result = arguments.callback(variables.event);
+				cachePut(arguments.key, result, arguments.timeSpan, arguments.timeSpan, arguments.cacheName);
 			}
 			return result;
 		}
