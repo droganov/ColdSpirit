@@ -1,6 +1,7 @@
 <cfprocessingdirective pageEncoding="utf-8" /><!DOCTYPE HTML>
 <cfparam name="url.tag" type="string" default="all" />
 <cfparam name="url.page" type="numeric" default="1" />
+<cfparam name="form.criteria" type="string" default="" />
 <cfsilent>
 	<cffunction name="countErrors" output="no" returntype="numeric" access="public">
 		<cfquery name = "local.result" datasource = "errorDSN">
@@ -9,6 +10,9 @@
 			WHERE host = <cfqueryparam value="#cgi.http_host#" cfsqltype="cf_sql_varchar" />
 			<cfif url.tag NEQ "all">
 				AND tag = <cfqueryparam value="#url.tag#" cfsqltype="cf_sql_varchar" />
+			</cfif>
+			<cfif Len(form.criteria)>
+				#search()#
 			</cfif>
 		</cfquery>
 		<cfreturn Val(result.cnt) />
@@ -22,9 +26,30 @@
 			<cfif url.tag NEQ "all">
 				AND tag = <cfqueryparam value="#url.tag#" cfsqltype="cf_sql_varchar" />
 			</cfif>
+			<cfif Len(form.criteria)>
+				#search()#
+			</cfif>
 			ORDER BY id DESC
 			LIMIT #arguments.limit#
 		</cfquery>
+		<cfreturn result />
+	</cffunction>
+	<cffunction name="search" output="no" returntype="string" access="public">
+		<cfsavecontent variable="local.result">
+			<cfoutput>
+				AND (
+					host				LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					ip					LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					location		LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					errorcode 	LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					errortype		LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					message			LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					scopes			LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					catchData		LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" /> OR
+					description	LIKE <cfqueryparam value="%#form.criteria#%" CFSQLType="cf_sql_varchar" />
+				)
+			</cfoutput>
+		</cfsavecontent>
 		<cfreturn result />
 	</cffunction>
 	<cffunction name="fetchTags" output="no" returntype="query" access="public">
@@ -107,7 +132,7 @@
 		.info{margin:0 -5px; display:none;}
 		.box{background-color: #fff; padding:5px; margin-top:5px;}
 		.pre{font-family:monospace; padding-bottom:1em; }
-		.cleanUp{position: absolute; top:30px; right:30px;}
+		.controls{position: absolute; top:30px; right:30px;}
 		.template{color:#F15A24;}
 		.error{color:#ff3c00;}
 		.warning{color:#ff9000;}
@@ -142,7 +167,18 @@
 </head>
 <cfoutput>
 <body>
-	<a href="?cleanUp" class="cleanUp">Прибрать говно</a>
+	<div class="controls">
+		<div class="aRight">
+			<a href="?cleanUp" class="cleanUp">Очистить лог</a>
+		</div>
+		<div class="search">
+			<form action="#cgi.script_name#?#cgi.query_string#" method="post" accept-charset="utf-8">
+				<input type="search" name="criteria" value="#HTMLEditFormat(form.criteria)#" placeholder="Поиск" />
+				<input type="submit" name="submit" value="Найти" />
+			</form>
+		</div>
+	</div>
+	
 	<div class="header"><a href="#cgi.script_name#">#cgi.http_host#</a></div>
 	<cfif tags.recordCount>
 		<div class="tabs">
@@ -151,6 +187,11 @@
 			<a href="#cgi.script_name#?tag=#URLEncodedFormat(tag)#" class="tab_#url.tag EQ tag#">#tag#</a>
 		</cfloop>
 			<div class="clear"></div>
+		</div>
+	</cfif>
+	<cfif Len(form.criteria)>
+		<div class="searchResult">
+			Найдено записей: #total#
 		</div>
 	</cfif>
  <cfif list.recordCount>
