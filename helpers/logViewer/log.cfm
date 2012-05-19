@@ -1,7 +1,8 @@
 <cfprocessingdirective pageEncoding="utf-8" /><!DOCTYPE HTML>
 <cfparam name="url.tag" type="string" default="all" />
 <cfparam name="url.page" type="numeric" default="1" />
-<cfparam name="form.criteria" type="string" default="" />
+<cfparam name="url.criteria" type="string" default="" />
+<cfparam name="form.criteria" type="string" default="#url.criteria#" />
 <cfsilent>
 	<cffunction name="countErrors" output="no" returntype="numeric" access="public">
 		<cfquery name = "local.result" datasource = "errorDSN">
