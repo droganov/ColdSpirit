@@ -187,12 +187,10 @@
 					cacheGet(cacheKey, true);
 				}
 				catch (e) {
-					try {
+					if (this.typeOf(arguments.dataProvider) EQ "railo.runtime.type.UDFImpl")
 						var data = arguments.dataProvider();
-					}
-					catch (e) {
+					else
 						var data = arguments.dataProvider;
-					}
 					arguments.blockName = this.include(arguments.blockName);
 					CachePut(cacheKey, arguments.blockName, arguments.chachedWithin);
 					return arguments.blockName;
@@ -349,6 +347,12 @@
 			}
 			include template=template;
 		//	WriteOutput(this.include(template));
+		}
+
+
+		// Desision
+		function typeOf (any obj) {
+			return createObject('java','railo.runtime.op.Caster').toTypeName(arguments.obj);
 		}
 	</cfscript>
 	<!--- Helpers --->
