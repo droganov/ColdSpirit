@@ -208,6 +208,7 @@
 			}
 			return result;
 		}
+		public struct function getEvent(){ return variables.event; }
 		public any function getService(required string serviceName, struct data:{}){
 			try {
 				return variables.spirit.services[arguments.serviceName];
