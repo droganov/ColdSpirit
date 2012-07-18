@@ -244,6 +244,13 @@
 		}
 		
 		// Setters
+		public void function rest(message, string contentType:"application/json"){
+			var c = getPageContext();
+			c.getResponse().setcontenttype(arguments.contentType);
+			c.write(serializeJson(arguments.message));
+			abort();
+		}
+
 		public string function css(string file, string media:"all"){
 			if(StructKeyExists(arguments, "file")){
 				StructInsert(variables.event.css, arguments.file, arguments.media, true);
