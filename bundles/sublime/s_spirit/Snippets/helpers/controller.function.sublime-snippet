@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+public ${1:struct} function ${2:viewState}(struct ${3:e}){
+	var result = {};
+	$0
+	return result;
+}
+]]></content>
+	<tabTrigger>f</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

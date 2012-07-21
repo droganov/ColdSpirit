@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>opacity</string>
 	<key>scope</key>
-	<string>source.scss</string>
+	<string>source.sass</string>
 	<key>tabTrigger</key>
 	<string>opacity</string>
 	<key>uuid</key>

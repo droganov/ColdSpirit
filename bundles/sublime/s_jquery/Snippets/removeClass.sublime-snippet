@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[.removeClass('${1:class name}')$0]]></content>
-	<tabTrigger>.removeClass</tabTrigger>
+	<content><![CDATA[removeClass("${1:class name}")$0]]></content>
+	<tabTrigger>removeClass</tabTrigger>
 	<scope>source.js, source.coffee</scope>
 </snippet>

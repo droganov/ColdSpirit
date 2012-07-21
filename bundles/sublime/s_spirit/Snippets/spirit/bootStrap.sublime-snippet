@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+bootStrap(${1:settings})
+]]></content>
+	<tabTrigger>bootStrap</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

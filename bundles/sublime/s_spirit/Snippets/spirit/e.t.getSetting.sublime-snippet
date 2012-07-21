@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.getSetting(${1:"${2:key}"})
+]]></content>
+	<tabTrigger>getSetting</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

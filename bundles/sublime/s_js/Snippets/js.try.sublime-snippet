@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+try {
+	$1
+}
+catch (e) {
+	$2
+}${3:
+finally \{
+	$4
+\}
+}]]></content>
+	<tabTrigger>try</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

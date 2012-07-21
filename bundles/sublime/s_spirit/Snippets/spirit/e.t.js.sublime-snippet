@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.js(${1:"/rc/js/${2:file}${3:.js}"});$0
+]]></content>
+	<tabTrigger>js</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

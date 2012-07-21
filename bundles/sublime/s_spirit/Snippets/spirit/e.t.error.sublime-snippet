@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.error(${1:404}${2:, ${3:"${4:Not found}"}})
+]]></content>
+	<tabTrigger>error</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+hasAlias()
+]]></content>
+	<tabTrigger>hasAlias</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

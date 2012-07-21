@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.getBlock(${1:"${2:block name}"}${3:, ${4:chachedWithin}${5:, ${6:"${7:block prefix}"}}})
+]]></content>
+	<tabTrigger>getBlock</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

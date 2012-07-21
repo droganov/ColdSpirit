@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+hasAncestor(${1:"$2"})
+]]></content>
+	<tabTrigger>hasAncestor</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.abort()
+]]></content>
+	<tabTrigger>abort</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

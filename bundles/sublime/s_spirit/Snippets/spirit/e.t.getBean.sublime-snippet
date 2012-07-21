@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.getBean(${1:"${2:beanName}"}${3:, ${4:"${5:dsn}"}})
+]]></content>
+	<tabTrigger>getBean</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

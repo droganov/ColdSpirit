@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+locked()
+]]></content>
+	<tabTrigger>locked</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.render(${1:"${2:state}"})
+]]></content>
+	<tabTrigger>render</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

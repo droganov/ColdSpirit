@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+fetchViews(${1:"${2:visible}"})
+]]></content>
+	<tabTrigger>fetchViews</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

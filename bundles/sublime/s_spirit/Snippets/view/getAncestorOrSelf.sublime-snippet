@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+getAncestorOrSelf(${1:"${2:visible}"})
+]]></content>
+	<tabTrigger>getAncestorOrSelf</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

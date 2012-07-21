@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>box-shadow</string>
 	<key>scope</key>
-	<string>source.scss</string>
+	<string>source.sass</string>
 	<key>tabTrigger</key>
 	<string>shadow</string>
 	<key>uuid</key>

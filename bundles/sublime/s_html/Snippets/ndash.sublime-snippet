@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+&ndash;
+]]></content>
+	<tabTrigger>ndash</tabTrigger>
+	<description>ColdSpirit:html:ndash</description>
+	<scope>text.html</scope>
+</snippet>

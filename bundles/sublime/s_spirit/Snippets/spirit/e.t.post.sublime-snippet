@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.post(${1:"${2:key}"}${3:, ${4:"${5:default}"}})
+]]></content>
+	<tabTrigger>post</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

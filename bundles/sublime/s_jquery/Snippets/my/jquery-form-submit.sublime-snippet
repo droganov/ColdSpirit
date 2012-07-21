@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+j(${1:"${2:#}${3:form}"}).submit(function(e){
+	e.preventDefault();
+	$0
+});
+]]></content>
+	<tabTrigger>submit</tabTrigger>
+	<scope>source.js</scope>
+</snippet>

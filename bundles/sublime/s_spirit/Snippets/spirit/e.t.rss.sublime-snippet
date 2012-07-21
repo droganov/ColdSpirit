@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.rss(${1:"${2:file}"}, ${3:"${4:title}"})
+]]></content>
+	<tabTrigger>rss</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

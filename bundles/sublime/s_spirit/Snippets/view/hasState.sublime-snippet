@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+hasState(${1:"$2"})
+]]></content>
+	<tabTrigger>hasState</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

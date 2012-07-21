@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+insert(${1:struct})
+]]></content>
+	<tabTrigger>insert</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

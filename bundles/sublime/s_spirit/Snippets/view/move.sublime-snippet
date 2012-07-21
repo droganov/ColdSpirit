@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+move(${1:"${2:viewName}"}${3:, ${4:"${5:placeAfter}"}})
+]]></content>
+	<tabTrigger>move</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

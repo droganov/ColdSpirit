@@ -9,7 +9,7 @@
 	<key>name</key>
 	<string>transition</string>
 	<key>scope</key>
-	<string>source.scss</string>
+	<string>source.sass</string>
 	<key>tabTrigger</key>
 	<string>transition</string>
 	<key>uuid</key>

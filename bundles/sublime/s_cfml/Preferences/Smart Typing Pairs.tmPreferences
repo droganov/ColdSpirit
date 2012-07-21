@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Smart Typing Pairs</string>
+	<string>Miscellaneous</string>
 	<key>scope</key>
-	<string>meta.scope.output.cfm, string.quoted.double.cfm</string>
+	<string>meta.scope.output.cfm, string.quoted.double.cfm, entity.name.tag.html</string>
 	<key>settings</key>
 	<dict>
 		<key>smartTypingPairs</key>
@@ -13,6 +13,34 @@
 			<array>
 				<string>#</string>
 				<string>#</string>
+			</array>
+			<array>
+				<string>"</string>
+				<string>"</string>
+			</array>
+			<array>
+				<string>(</string>
+				<string>)</string>
+			</array>
+			<array>
+				<string>{</string>
+				<string>}</string>
+			</array>
+			<array>
+				<string>[</string>
+				<string>]</string>
+			</array>
+			<array>
+				<string>“</string>
+				<string>”</string>
+			</array>
+			<array>
+				<string>'</string>
+				<string>'</string>
+			</array>
+			<array>
+				<string>`</string>
+				<string>`</string>
 			</array>
 		</array>
 	</dict>

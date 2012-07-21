@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>mixins:px</string>
 	<key>scope</key>
-	<string>source.scss</string>
+	<string>source.sass</string>
 	<key>tabTrigger</key>
 	<string>px</string>
 	<key>uuid</key>

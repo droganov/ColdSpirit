@@ -209,6 +209,14 @@
 			return result;
 		}
 		public struct function getEvent(){ return variables.event; }
+		public string function getIP(){
+			if(Len(CGI.HTTP_X_Forwarded_For))
+				var result = CGI.HTTP_X_Forwarded_For;
+			else
+				var result = CGI.Remote_Addr;
+			return trim(ListFirst(result));
+		}
+
 		public any function getService(required string serviceName, struct data:{}){
 			try {
 				return variables.spirit.services[arguments.serviceName];

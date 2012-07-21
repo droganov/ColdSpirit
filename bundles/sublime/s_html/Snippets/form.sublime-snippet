@@ -1,0 +1,19 @@
+<snippet>
+	<content><![CDATA[
+<form id="${2:$1Form}" action="/form/$1" method="post">
+	$0
+	<div class="errorWrapper">
+		<div class="error hide"></div>
+	</div>
+	<div class="clear"></div>
+	<div class="submit">
+		<input type="submit" name="submit" value="$4" />
+	</div>
+	<div class="clear"></div>
+</form>
+<div id="$2Success" class="$2Success success hide"></div>
+]]></content>
+	<tabTrigger>form</tabTrigger>
+	<description>ColdSpirit:html:form</description>
+	<scope>text.html.cfm</scope>
+</snippet>

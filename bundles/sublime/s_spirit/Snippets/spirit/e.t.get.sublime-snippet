@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.get(${1:3}${2:, ${3:"${4:default}"}})
+]]></content>
+	<tabTrigger>get</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

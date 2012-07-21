@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+getAncestor(${1:"${2:visible}"})
+]]></content>
+	<tabTrigger>getAncestor</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

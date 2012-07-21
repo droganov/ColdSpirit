@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+getAncestorArray(${1:ancestorArray})
+]]></content>
+	<tabTrigger>getAncestorArray</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>

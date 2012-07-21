@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>+blueprint-debug("${1:grid.png}")</string>
+	<key>name</key>
+	<string>+blueprint-debug (grid_image)</string>
+	<key>scope</key>
+	<string>source.sass</string>
+	<key>tabTrigger</key>
+	<string>+bpd</string>
+	<key>uuid</key>
+	<string>0FD1E284-83C2-4826-AF39-784A9151E202</string>
+</dict>
+</plist>

@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+e.t.getService(${1:"${2:service name}"}${3:, ${4:extends:cfc}})
+]]></content>
+	<tabTrigger>getService</tabTrigger>
+	<scope>text.html.cfm</scope>
+</snippet>
