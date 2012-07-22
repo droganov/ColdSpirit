@@ -50,10 +50,10 @@
 				var view = e.currentView	= this.getView(viewName);
 			}
 			catch (Any e){
-				this.error();
+				this.throwHttpCode(404);
 			}
 			// Protecting locked views
-			if(view.locked()) this.error();
+			if(view.locked()) this.throwHttpCode(404);
 			
 			// Managing alias (one pre request, no recusion)
 			if(view.hasAlias()){
@@ -68,7 +68,7 @@
 					view = e.currentView	= this.getView(aliasName);
 				}
 				catch (Any e){
-					this.error();
+					this.throwHttpCode(404);
 				}
 			}
 			
@@ -81,7 +81,7 @@
 
 
 			if(NOT Len(stateName))
-				this.error(404, "Not found");
+				this.throwHttpCode(404);
 
 
 
@@ -89,14 +89,14 @@
 				var state = e.currentState	= view.getState(stateName);
 			}
 			catch(Any e) {
-				this.error();
+				this.throwHttpCode(404);
 			}
 			
 			if(Len(state.get("title")))
 				e.title = state.get("title");
 			
 			// Protecting locked states
-			if(state.locked()) this.error();
+			if(state.locked()) this.throwHttpCode(404);
 			
 			e.viewState = viewName & "/" & stateName;
 			e.name = viewName & stateName;
@@ -127,7 +127,7 @@
 			
 			// fixing unvanted variables in url
 			if(ArrayLen(e.get.key) GT StructCount(e.get.keys))
-				this.error();
+				this.throwHttpCode(404);
 		}
 		
 		// Actions
@@ -137,10 +137,6 @@
 		public void function ajaxOnly(){
 			if(NOT StructKeyExists(GetHttpRequestData().headers,"x-requested-with") OR GetHttpRequestData().headers["x-requested-with"] NEQ "XMLHttpRequest")
 				this.abort();
-		}
-		public void function error(numeric code:404, string description:"Not found"){
-			this.header(arguments.code, arguments.description);
-			this.abort();
 		}
 		
 		public void function noCache(){
@@ -331,12 +327,18 @@
 			}
 			return result;
 		}
+		public void function throwHttpCode(numeric code:404){
+			header code = arguments.code;
+			this.abort();
+		}
+
 		public string function title(string title){
 			if(Len(arguments.title))
 				variables.event.title = arguments.title;
 			else
 				return variables.event.title;
 		}
+
 		public void function header(required numeric statuscode, string statustext:""){
 			header statuscode=arguments.statuscode statustext=arguments.statustext;
 		}
