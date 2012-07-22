@@ -327,8 +327,9 @@
 			}
 			return result;
 		}
-		public void function throwHttpCode(numeric code:404){
-			header code = arguments.code;
+
+		public void function throwHttpCode(numeric statusCode:404){
+			header statusCode = arguments.statusCode;
 			this.abort();
 		}
 
@@ -339,9 +340,7 @@
 				return variables.event.title;
 		}
 
-		public void function header(required numeric statuscode, string statustext:""){
-			header statuscode=arguments.statuscode statustext=arguments.statustext;
-		}
+		
 
 		// Renderers
 		public void function render(string mode:""){
