@@ -255,9 +255,10 @@
 		// Setters
 		public void function rest(message, string contentType:"application/json"){
 			var c = getPageContext();
+			c.getOut().clearBuffer();
 			c.getResponse().setcontenttype(arguments.contentType);
-			c.write(serializeJson(arguments.message));
-			abort();
+			WriteOutput(serializeJson(arguments.message));
+			this.abort();
 		}
 
 		public string function css(string file, string media:"all"){
