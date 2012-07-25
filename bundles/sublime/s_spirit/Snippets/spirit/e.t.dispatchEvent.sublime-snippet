@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-e.t.dispatchEvent(${1:view/state})
-]]></content>
-	<tabTrigger>dispatchEvent</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

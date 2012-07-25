@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-get(${1:"$2"})
-]]></content>
-	<tabTrigger>get</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

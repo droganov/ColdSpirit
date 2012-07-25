@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-visible()
-]]></content>
-	<tabTrigger>visible</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

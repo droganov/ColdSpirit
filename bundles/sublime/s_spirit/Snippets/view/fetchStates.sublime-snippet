@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-fetchStates(${1:"${2:visible}"})
-]]></content>
-	<tabTrigger>fetchStates</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

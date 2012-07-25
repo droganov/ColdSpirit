@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[.unwrap()$0]]></content>
-	<tabTrigger>.unwrap</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

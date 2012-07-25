@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[jQuery.browser.version]]></content>
-	<tabTrigger>jQuery.browser</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

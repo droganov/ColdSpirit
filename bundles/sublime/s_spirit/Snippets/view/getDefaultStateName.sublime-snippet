@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-getDefaultStateName()
-]]></content>
-	<tabTrigger>getDefaultStateName</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

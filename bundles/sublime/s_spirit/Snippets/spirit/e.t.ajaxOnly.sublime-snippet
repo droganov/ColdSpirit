@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-e.t.ajaxOnly()
-]]></content>
-	<tabTrigger>ajaxOnly</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[.serializeArray()$0]]></content>
-	<tabTrigger>.serializeArray</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-e.currentView
-]]></content>
-	<tabTrigger>currentView</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

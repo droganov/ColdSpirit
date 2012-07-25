@@ -1,7 +1,0 @@
-<snippet>
-<content><![CDATA[
-e.t.getView(${1:"$2"})
-]]></content>
-<tabTrigger>getView</tabTrigger>
-<scope>text.html.cfm</scope>
-</snippet>

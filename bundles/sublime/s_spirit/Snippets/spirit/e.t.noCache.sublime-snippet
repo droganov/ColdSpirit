@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-e.t.noCache()
-]]></content>
-	<tabTrigger>noCache</tabTrigger>
-	<scope>text.html.cfm</scope>
-</snippet>

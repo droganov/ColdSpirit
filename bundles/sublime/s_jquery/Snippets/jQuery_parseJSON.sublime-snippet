@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[jQuery.parseJSON(${1:json});${0:}]]></content>
-	<tabTrigger>jQuery.parseJSON</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

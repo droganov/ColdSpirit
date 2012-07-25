@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[serialize()$0]]></content>
-	<tabTrigger>serialize</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

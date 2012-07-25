@@ -1,7 +1,0 @@
-<snippet>
-	<content><![CDATA[
-@include scale($1);$0
-]]></content>
-	<tabTrigger>scale</tabTrigger>
-	<scope>source.sass</scope>
-</snippet>

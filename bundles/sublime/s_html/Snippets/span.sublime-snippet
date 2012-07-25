@@ -1,8 +1,0 @@
-<snippet>
-	<content><![CDATA[
-<span class="$1">$0</span>
-]]></content>
-	<tabTrigger>span.</tabTrigger>
-	<description>ColdSpirit:html:span+class</description>
-	<scope>text.html</scope>
-</snippet>

@@ -1,6 +1,0 @@
-<snippet>
-	<content><![CDATA[:parent
-]]></content>
-	<tabTrigger>:</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>

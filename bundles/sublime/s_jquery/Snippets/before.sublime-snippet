@@ -1,5 +1,0 @@
-<snippet>
-	<content><![CDATA[.before('${1:Some text <b>and bold!</b>}')$0]]></content>
-	<tabTrigger>.before</tabTrigger>
-	<scope>source.js, source.coffee</scope>
-</snippet>
