@@ -32,8 +32,9 @@
 		function OnRequestEnd(){
 		//	writeOutput("<!-- " & GetTickCount() - this.timer & " MS -->");
 		}
+		/*
 		function onError(Exception, string EventName){
 			super.getService("log").Exception(arguments.Exception, arguments.EventName);
-		}
+		}*/
 	</cfscript>
 </cfcomponent>
