@@ -1,0 +1,26 @@
+$total-columns: 24;
+$column-margin: 10px;
+$column-width: 30px;
+
+@mixin span ($colunms, $margin: $column-margin){
+	width: ($column-width * $colunms + ($column-margin * $colunms) - $column-margin);
+	margin-right: $margin;
+	position:relative;
+	float:left;
+}
+
+@mixin prepend($columns){
+	padding-left: ($columns * $column-width + ($column-margin * $columns));
+}
+
+@mixin append($columns){
+	padding-right: ($columns * $column-width + ($column-margin * $columns));
+}
+
+@mixin pull($columns){
+	margin-left: ($columns * $column-width + ($column-margin * $columns)) * (-1);
+}
+@mixin push($columns){
+	margin-left: ($columns * $column-width + ($column-margin * $columns));
+	margin-right: ($columns * $column-width + ($column-margin * $columns)) * (-1);
+}

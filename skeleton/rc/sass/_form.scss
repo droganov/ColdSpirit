@@ -1,0 +1,77 @@
+label {font-weight:normal;}
+fieldset {padding:0 1.4em 1.4em 1.4em;margin:0 0 1.5em 0;border:1px solid #ccc;}
+legend {font-weight:bold;font-size:1.2em;margin-top:-0.2em;margin-bottom:1em;}
+fieldset, #IE8#HACK {padding-top:1.4em;}
+legend, #IE8#HACK {margin-top:0;margin-bottom:0;}
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
+	background-color:#fff;border:1px solid $input-border-color; color:$input-text-color;
+	@include border-radius($input-border-radius);
+	@include box-shadow($input-shadow-params);
+	@include transition-property(box-shadow);
+	@include transition-duration(.3s);
+	@include transition-timing-function(ease-out);
+}
+input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus, input.text:focus, input.title:focus, textarea:focus {
+	border-color:$input-focus-border-color;
+	@include box-shadow($input-focus-shadow-params);
+}
+
+input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {margin:-5px; margin-bottom:10px; padding:5px;}
+select{height: 2.45em; background: #fff; background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff));}
+
+input[type=submit] {
+	background-color:$input-submit-background-color;
+	color: $input-submit-text-color;
+	border:1px solid $input-submit-text-color;
+	padding: 5px 2em;
+	position:relative;
+	margin-right:1em;
+	@include px(12);
+	@include border-radius(6px);
+	@include box-shadow($input-submit-shadow-params);
+}
+input[type=button] {
+	@extend input[type=submit];
+	background-color:$input-submit-background-color;
+}
+input[type=submit]:active, input[type=button]:active{
+	top:1px; left:1px;
+}
+
+input[type=submit].busy{
+	@include opacity(.3);
+}
+
+::-webkit-input-placeholder {
+    color: $input-placeholder-text-color;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: $input-placeholder-text-color;
+}
+
+
+form.inline {line-height:3;}
+form.inline p {margin-bottom:0;}
+.error, .alert, .notice, .success {
+	padding:3px; margin:-5px; @include border-radius(6px);
+	margin-bottom:10px; border:2px solid #ddd;
+}
+.error, .alert {
+	background:$error-background-color;
+	color:$error-text-color;
+	border-color:$error-border-color;
+	a{color:$error-link-color;}
+}
+.notice {
+	background:$notice-background-color;
+	color:$notice-text-color;
+	border-color:$notice-border-color;
+	a{color:$notice-link-color;}
+}
+.success {
+	background:$success-background-color;
+	color:$success-text-color;
+	border-color:$success-border-color;
+	a{color:$success-link-color;}
+}
+

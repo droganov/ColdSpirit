@@ -1,0 +1,9 @@
+@import "grid/liquid";
+
+$total-columns: 6;
+$column-margin: 3.2;
+$column-width: (100 - ($column-margin * ($total-columns - 1))) / $total-columns;
+
+@media screen and (max-width: 480px){
+	
+}
