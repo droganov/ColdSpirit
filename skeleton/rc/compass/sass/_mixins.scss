@@ -1,3 +1,0 @@
-@mixin px($px){
-	font-size:percentage(($px + 0px) / $base-font-size);
-}
