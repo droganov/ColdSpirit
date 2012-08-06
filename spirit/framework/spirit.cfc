@@ -135,7 +135,7 @@
 			abort;
 		}
 		public void function ajaxOnly(){
-			if(NOT StructKeyExists(GetHttpRequestData().headers,"x-requested-with") OR GetHttpRequestData().headers["x-requested-with"] NEQ "XMLHttpRequest")
+			if(NOT this.isAjaxRequest())
 				this.abort();
 		}
 		
@@ -154,6 +154,14 @@
 			return Replace(theURL, "//", "/");
 		}
 		
+		// Decision
+		public boolean function isAjaxRequest(){
+			return
+				StructKeyExists(GetHttpRequestData().headers,"x-requested-with")
+			AND
+				GetHttpRequestData().headers["x-requested-with"] EQ "XMLHttpRequest";
+		}
+
 		// Getters
 		public string function get(required string key, string default:"f"){
 			variables.event.get.keys[arguments.key] = "";
