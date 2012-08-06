@@ -161,6 +161,9 @@
 			AND
 				GetHttpRequestData().headers["x-requested-with"] EQ "XMLHttpRequest";
 		}
+		function typeOf (any obj) {
+			return createObject('java','railo.runtime.op.Caster').toTypeName(arguments.obj);
+		}
 
 		// Getters
 		public string function get(required string key, string default:"f"){
@@ -200,6 +203,7 @@
 					return arguments.blockName;
 				}
 			}
+
 			return this.include(arguments.blockName);
 		}
 		public any function getCached(string key, callback, numeric timeSpan:0, string cacheName){
@@ -254,6 +258,12 @@
 		}
 		public view function getView(string viewName:variables.event.currentView.get("name")){
 			return variables.SPIRIT.viewStack[arguments.viewName];
+		}
+		public string function include(string template){
+			savecontent variable="local.result" {
+				include arguments.template;
+			}
+			return result;
 		}
 		
 		// Setters
@@ -374,20 +384,8 @@
 			include template=template;
 		//	WriteOutput(this.include(template));
 		}
-
-
-		// Desision
-		function typeOf (any obj) {
-			return createObject('java','railo.runtime.op.Caster').toTypeName(arguments.obj);
-		}
 	</cfscript>
 	<!--- Helpers --->
-	<cffunction name="include" output="no" returntype="string" access="public">
-		<cfargument name="template" type="string" />
-		<cfset var e = var event = variables.event />
-		<cfsavecontent variable="local.result"><cfinclude template="#arguments.template#" /></cfsavecontent>
-		<cfreturn result />
-	</cffunction>
 	<cffunction name="suppressScripts" output="no" returntype="void" access="public">
 		<cfscript>
 			var jsKey = Hash(StructKeyList(variables.event.js));
