@@ -4,7 +4,7 @@
 		public void function init(struct settings:{}) {
 			variables.spirit = CreateObject("component", "com.boot").init(arguments.settings);
 		}
-		private void function bootStrap(struct settings:{}) {
+		private void function bootStrap(struct settings:{}) output=false {
 			lock scope="Application" type="readOnly" timeout="30" {
 				variables.spirit = Application[arguments.settings.appKey];
 			}
@@ -13,7 +13,7 @@
 			if(NOT StructKeyExists(url, "vars"))
 				url.vars = "";
 		}
-		public void function dispatchEvent(string eventName:""){
+		public void function dispatchEvent(string eventName:"") output=false{
 			var e = variables.event = {};
 			e.get 							= {};
 			e.get.keys	 					= {};
@@ -203,16 +203,17 @@
 					return arguments.blockName;
 				}
 			}
-
 			return this.include(arguments.blockName);
 		}
 		public any function getCached(string key, callback, numeric timeSpan:0, string cacheName){
 			try {
 				return cacheGet(arguments.key, true, arguments.cacheName);
+				throw(123);
 			}
 			catch(Any e) {
 				var result = arguments.callback(variables.event);
-				cachePut(arguments.key, result, arguments.timeSpan, arguments.timeSpan, arguments.cacheName);
+				if(timeSpan)
+					cachePut(arguments.key, result, arguments.timeSpan, arguments.timeSpan, arguments.cacheName);
 			}
 			return result;
 		}
@@ -260,6 +261,7 @@
 			return variables.SPIRIT.viewStack[arguments.viewName];
 		}
 		public string function include(string template){
+			var e = var event = variables.event;
 			savecontent variable="local.result" {
 				include arguments.template;
 			}
@@ -267,14 +269,6 @@
 		}
 		
 		// Setters
-		public void function rest(message, string contentType:"application/json"){
-			var c = getPageContext();
-			c.getOut().clearBuffer();
-			c.getResponse().setcontenttype(arguments.contentType);
-			WriteOutput(serializeJson(arguments.message));
-			this.abort();
-		}
-
 		public string function css(string file, string media:"all"){
 			if(StructKeyExists(arguments, "file")){
 				StructInsert(variables.event.css, arguments.file, arguments.media, true);
@@ -361,8 +355,7 @@
 		
 
 		// Renderers
-		public void function render(string mode:""){
-			var e = var event = variables.event;
+		public string function render(string mode:""){
 			switch(arguments.mode) {
 				case "layout":{
 					var template = this.getSetting("layout") & event.currentView.get("layout");
@@ -381,8 +374,21 @@
 					break;
 				}
 			}
-			include template=template;
-		//	WriteOutput(this.include(template));
+			return this.include(template);
+		}
+		public void function rest(message, string contentType){
+			var c = getPageContext();
+			if(isSimpleValue(arguments.message)){
+				param name="arguments.contentType" type="string" default="text/html";
+			}
+			else{
+				param name="arguments.contentType" type="string" default="application/json";
+				arguments.message = serializeJson(arguments.message);
+			}
+			c.getOut().clearBuffer();
+			c.getResponse().setcontenttype(arguments.contentType);
+			WriteOutput(arguments.message);
+			this.abort();
 		}
 	</cfscript>
 </cfcomponent>
