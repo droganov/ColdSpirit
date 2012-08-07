@@ -10,7 +10,7 @@
 				errorcode:	Val(arguments.exception.errorcode),
 				errortype:	arguments.exception.type
 			};
-			
+
 			if(IsSimpleValue(arguments.description))
 				data.description = arguments.description;
 			else
@@ -92,7 +92,8 @@
 		
 		<cfparam name="arguments.data.errorcode" type="numeric" default="0" />
 		<cfparam name="arguments.data.errortype" type="string" default="" />
-		
+
+
 		<cftry>
 			<cfquery name = "insert" datasource = "#this.parent.getSetting('logDSN')#">
 				INSERT INTO log (tag, errorcode, errortype, ip, host, location, message, scopes, sizeOf, catchData, description)
@@ -112,9 +113,9 @@
 			</cfquery>
 			<cfcatch type="any">
 				<cfscript>
-					switch(arguments.tag) {
+					switch(arguments.data.tag) {
 						case "Warning": case "Error":{
-							var type = arguments.tag;
+							var type = arguments.data.tag;
 							break;
 						}
 						default: {
@@ -123,7 +124,7 @@
 						}
 					}
 				</cfscript>
-				<cflog text = "#arguments.message#" file="ColdSpirit" type="#type#" application = "yes" />
+				<cflog text = "#arguments.data.message#" file="ColdSpirit" type="#type#" application = "yes" />
 			</cfcatch>
 		</cftry>
 	</cffunction>
