@@ -262,6 +262,7 @@
 		public view function getView(string viewName:variables.event.currentView.get("name")){
 			return variables.SPIRIT.viewStack[arguments.viewName];
 		}
+		public string function getViewState(e){ return variables.event.viewState; }
 		public string function include(string template){
 			var e = var event = variables.event;
 			savecontent variable="local.result" {
