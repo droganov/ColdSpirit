@@ -44,8 +44,10 @@
 			/*
 				TODO Сделать задание view/state как параметра, чтобы можно было менять их распложение
 			*/
-			var viewName					= this.get(this.getSetting("viewUrlPosition"),
-											  this.getSetting("defaultViewName"));
+			var viewName					= this.get(
+												this.getSetting("viewUrlPosition"),
+											 	this.getSetting("defaultViewName")
+											 );
 			try{
 				var view = e.currentView	= this.getView(viewName);
 			}
@@ -212,7 +214,7 @@
 			}
 			catch(Any e) {
 				var result = arguments.callback(variables.event);
-				if(timeSpan)
+				if(timeSpan NEQ 0)
 					cachePut(arguments.key, result, arguments.timeSpan, arguments.timeSpan, arguments.cacheName);
 			}
 			return result;
