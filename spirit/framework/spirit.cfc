@@ -187,7 +187,7 @@
 			bean["extend"] = this["extend"];
 			return bean.extend(data);
 		}
-		public string function getBlock(required string blockName, numeric chachedWithin:0, string blockPrefix:"block", dataProvider){
+		public string function getBlock(required string blockName, dataProvider, numeric chachedWithin:0, string blockPrefix:"block"){
 			arguments.blockName = this.getSetting("block") & arguments.blockName & ".cfm";
 			if(arguments.chachedWithin) {
 				var cacheKey = arguments.blockPrefix & "_" & arguments.blockName;
