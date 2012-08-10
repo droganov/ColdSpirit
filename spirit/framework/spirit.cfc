@@ -188,10 +188,10 @@
 			return bean.extend(data);
 		}
 		public string function getBlock(required string blockName, dataProvider, numeric chachedWithin:0, string blockPrefix:"block"){
+			var e = local.event = variables.event;
 			arguments.blockName = this.getSetting("block") & arguments.blockName & ".cfm";
 			if(arguments.chachedWithin) {
 				var cacheKey = arguments.blockPrefix & "_" & arguments.blockName;
-
 				try {
 					cacheGet(cacheKey, true);
 				}
@@ -200,12 +200,23 @@
 						var data = arguments.dataProvider();
 					else
 						var data = arguments.dataProvider;
-					arguments.blockName = this.include(arguments.blockName);
-					CachePut(cacheKey, arguments.blockName, arguments.chachedWithin);
-					return arguments.blockName;
+					savecontent variable="local.result" {
+						include arguments.blockName;
+					}
+					CachePut(cacheKey, result, arguments.chachedWithin);
 				}
 			}
-			return this.include(arguments.blockName);
+			else {
+				if (this.typeOf(arguments.dataProvider) EQ "railo.runtime.type.UDFImpl")
+					var data = arguments.dataProvider();
+				else
+					var data = arguments.dataProvider;
+				savecontent variable="local.result" {
+					include arguments.blockName;
+				}
+			}
+
+			return result;
 		}
 		public any function getCached(string key, callback, numeric timeSpan:0, string cacheName){
 			try {
