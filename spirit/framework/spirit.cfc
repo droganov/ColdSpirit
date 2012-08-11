@@ -391,15 +391,17 @@
 		}
 		public void function rest(message, string contentType){
 			var c = getPageContext();
+			c.getOut().clearBuffer();
 			if(isSimpleValue(arguments.message)){
-				param name="arguments.contentType" type="string" default="text/html";
+				if(NOT Len(arguments.contentType))
+					arguments.contentType = "text/html";
 			}
 			else{
-				param name="arguments.contentType" type="string" default="application/json";
+				if(NOT Len(arguments.contentType))
+					arguments.contentType = "application/json";
 				arguments.message = serializeJson(arguments.message);
 			}
-			c.getOut().clearBuffer();
-			c.getResponse().setcontenttype(arguments.contentType);
+			c.getResponse().setContentType(arguments.contentType);
 			WriteOutput(arguments.message);
 			this.abort();
 		}
