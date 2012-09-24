@@ -26,8 +26,7 @@
 		}
 		function onRequest(scriptName){
 			this.dispatchEvent();
-			this.render();
-			//writeOutput();
+			writeOutput ( this.render() );
 		}
 		function OnRequestEnd(){
 		//	writeOutput("<!-- " & GetTickCount() - this.timer & " MS -->");
