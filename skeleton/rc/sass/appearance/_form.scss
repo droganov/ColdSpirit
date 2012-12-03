@@ -1,0 +1,148 @@
+// settings
+$input-text-color:								$body-text-color;
+$input-border-color:							#c6ccce;
+$input-focus-border-color:				#98a8b1;
+$input-placeholder-text-color:		#ccc;
+
+$error-background-color:					#fbe3e4;
+$error-text-color:								#8a1f11;
+$error-border-color:							#fbc2c4;
+$error-link-color:								$error-text-color;
+$notice-background-color:					#fff6bf;
+$notice-text-color:								#514721;
+$notice-border-color:							#ffd324;
+$notice-link-color:								$notice-text-color;
+$success-background-color:				#e6efc2;
+$success-text-color:							#264409;
+$success-border-color:						#c6d880;
+$success-link-color:							$success-text-color;
+
+// Units
+$input-border-radius:							3px;
+
+// Params
+$input-shadow-params:							1px 1px 2px rgba(0, 0, 0, .25);
+$input-focus-shadow-params:				0px 0px 18px rgba(87, 182, 247, .4);
+
+
+label {font-weight:normal;}
+label.inline{
+	display: inline-block;
+	text-align: right;
+	margin-right: 1em;
+}
+fieldset {
+	border:0px solid $hr-color;
+	margin:0 -2em; margin-bottom: 0em;
+	padding:0 2em; padding-top: 0; padding-bottom: 1em;
+	position: relative;
+}
+legend {font-weight:bold; font-size:1.2em; margin:0; padding:0;}
+
+input[type=text]{
+	background-color:#fff;
+	border:1px solid $input-border-color;
+	color:$input-text-color;
+	margin: 0 -7px;
+	padding: 7px;
+	vertical-align: baseline;
+	@include border-radius($input-border-radius);
+	@include box-shadow($input-shadow-params);
+	@include transition-property(box-shadow);
+	@include transition-duration(.3s);
+	@include transition-timing-function(ease-out);
+}
+input[type=text]:focus{
+	border-color:$input-focus-border-color;
+	@include box-shadow($input-focus-shadow-params);
+}
+input[type=password],
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type="url"],
+input[type=week],
+textarea,
+select {@extend input[type=text];}
+
+
+select{height: 2.65em; background: #fff;}
+
+input[type=submit] {
+	background-color:#E94E1B;
+	color: #fff;
+	border:1px solid #E94E1B;
+	padding: 7px 2em;
+	position:relative;
+	margin:0 -7px;
+	@include background-image(
+		linear-gradient(
+			top,
+			#E9781B 20%,
+			#E94E1B 100%
+		)
+	);
+	@include px(12);
+	@include border-radius($input-border-radius);
+	@include box-shadow(1px 1px 1px rgba(0, 0, 0, .25));
+}
+input[type=submit]:hover{
+	@include background-image(
+		linear-gradient(
+			top,
+			adjust-hue(#E9781B, 5) 20%,
+			#E94E1B 100%
+		)
+	);
+}
+input[type=submit]:active{
+	top:1px; left:1px;
+}
+
+input[type=button] {
+	@extend input[type=submit];
+}
+
+
+form.busy input[type=submit]{
+	@include opacity(.3);
+}
+
+::-webkit-input-placeholder {
+    color: $input-placeholder-text-color;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: $input-placeholder-text-color;
+}
+
+
+.error, .alert, .notice, .success {
+	padding:3px; margin:-5px; @include border-radius(6px);
+	margin-bottom:10px; border:2px solid #ddd;
+}
+.error, .alert {
+	background:$error-background-color;
+	color:$error-text-color;
+	border-color:$error-border-color;
+	a{color:$error-link-color;}
+}
+.notice {
+	background:$notice-background-color;
+	color:$notice-text-color;
+	border-color:$notice-border-color;
+	a{color:$notice-link-color;}
+}
+.success {
+	background:$success-background-color;
+	color:$success-text-color;
+	border-color:$success-border-color;
+	a{color:$success-link-color;}
+}
+
