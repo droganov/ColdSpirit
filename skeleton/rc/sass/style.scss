@@ -1,4 +1,4 @@
-@import "compass", "reset";
+@import "compass";
 
 // Colors
 $body-text-color:									#1A1A1A;
@@ -12,20 +12,17 @@ $link-color:											#0071B4;
 $link-hover-color:								adjust-lightness($link-color, 15);
 $link-visited-color:							adjust-lightness($link-color, -18);
 
-
-$base-font-size: 13px;
-@include establish-baseline;
-
-
 @import "mixins";
+
+//reset
+@import "appearance/reset";
+
 
 // fonts
 @import "fonts/ptsans";
 @import "fonts/rubl";
 
-
-
+@import "appearance/base";
 @import "appearance/form";
+@import "appearance/typography";
 @import "appearance/styles";
-
-

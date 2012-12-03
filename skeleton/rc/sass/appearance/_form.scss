@@ -37,7 +37,7 @@ fieldset {
 	padding:0 2em; padding-top: 0; padding-bottom: 1em;
 	position: relative;
 }
-legend {font-weight:bold; font-size:1.2em; margin:0; padding:0;}
+legend {@extend h5; margin:0; padding:0; margin-bottom: .5em;}
 
 input[type=text]{
 	background-color:#fff;

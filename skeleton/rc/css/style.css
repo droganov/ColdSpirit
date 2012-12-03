@@ -1,6 +1,8 @@
-/* line 13, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+@import url(http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,cyrillic);
+/* line 13, ../sass/appearance/_reset.scss */
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h4, h5, legend, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -21,54 +23,56 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-/* line 23, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 23, ../sass/appearance/_reset.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 26, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 26, ../sass/appearance/_reset.scss */
 body {
-  line-height: 1;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* line 29, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 32, ../sass/appearance/_reset.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 32, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 35, ../sass/appearance/_reset.scss */
 blockquote, q {
   quotes: none;
 }
 
-/* line 36, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 39, ../sass/appearance/_reset.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none;
 }
 
-/* line 40, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 43, ../sass/appearance/_reset.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 44, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_reset.scss */
+/* line 47, ../sass/appearance/_reset.scss */
 :focus {
   outline: 0;
 }
 
-/* line 53, /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
-body {
-  font-size: 81.25%;
-  line-height: 1.846em;
+/* line 4, ../sass/fonts/_ptsans.scss */
+.sans, body {
+  font-family: "PT Sans", Helvetica, sans-serif;
 }
 
-/* line 57, /Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/lib/compass/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
-html > body {
-  font-size: 13px;
+/* line 5, ../sass/fonts/_ptsans.scss */
+.narrow {
+  font-family: "PT Sans Narrow", "Helvetica Narrow", sans-serif;
 }
 
 @font-face {
@@ -87,251 +91,510 @@ html > body {
   font-style: italic;
 }
 
-/* line 23, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_ruble.scss */
+/* line 23, ../sass/fonts/_rubl.scss */
 .rub {
   font-weight: normal;
   font-style: normal;
   font-family: 'ALSRubl-Arial', arial, sans-serif;
 }
 
-/* line 29, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_ruble.scss */
+/* line 29, ../sass/fonts/_rubl.scss */
 .rub_i {
   font-weight: normal;
   font-style: italic;
   font-family: 'ALSRubl-Arial-Italic', arial, sans-serif;
 }
 
-/* line 1, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/*
+Baseline - a designer framework
+Copyright (C) 2009 Stephane Curzi, ProjetUrbain.com
+Creative Commons Attribution-Share Alike 3.0 License
+version 0.5.2
+*/
+/******************** Base ********************/
+/* line 9, ../sass/appearance/_base.scss */
+body {
+  font-family: helvetica, arial, sans-serif;
+  line-height: 1.5;
+  background: white;
+  color: black;
+}
+
+/* line 10, ../sass/appearance/_base.scss */
+h1, h2, h3, h4, h5, legend, h6 {
+  line-height: 1.2;
+}
+
+/* line 11, ../sass/appearance/_base.scss */
+h4, h5, legend, h6 {
+  font-weight: bold;
+}
+
+/* line 12, ../sass/appearance/_base.scss */
+b, strong, caption, th, thead, dt, legend {
+  font-weight: bold;
+}
+
+/* line 13, ../sass/appearance/_base.scss */
+cite, dfn, em, i {
+  font-style: italic;
+}
+
+/* line 14, ../sass/appearance/_base.scss */
+code, kbd, samp, pre, tt, var {
+  font-family: mono-space, monospace;
+}
+
+/* line 15, ../sass/appearance/_base.scss */
+h1, h2, h3, h4, h5, legend, h6 {
+  word-spacing: -0.125em;
+}
+
+/* line 16, ../sass/appearance/_base.scss */
+p {
+  word-spacing: 0.125em;
+  hyphenate: auto;
+  hyphenate-lines: 3;
+}
+
+/* line 17, ../sass/appearance/_base.scss */
+p::after {
+  content: "break";
+  display: block;
+  visibility: hidden;
+}
+
+/*	
+p+p												{ text-indent: 1.5em; }
+p+p.no-indent									{ text-indent: 0; }
+*/
+/* line 22, ../sass/appearance/_base.scss */
+pre {
+  white-space: pre;
+}
+
+/* line 23, ../sass/appearance/_base.scss */
+del {
+  text-decoration: line-through;
+}
+
+/* line 24, ../sass/appearance/_base.scss */
+mark {
+  background: rgba(255, 255, 0, 0.4);
+  padding: 0 .25em;
+}
+
+/* line 25, ../sass/appearance/_base.scss */
+ins {
+  color: #f00;
+}
+
+/* line 26, ../sass/appearance/_base.scss */
+small, sup, sub {
+  font-size: 80%;
+}
+
+/* line 27, ../sass/appearance/_base.scss */
+big {
+  font-size: 125%;
+  line-height: 80%;
+}
+
+/* line 28, ../sass/appearance/_base.scss */
+abbr, acronym {
+  font-size: 85%;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* line 29, ../sass/appearance/_base.scss */
+abbr[title], acronym[title], dfn[title] {
+  border-bottom: 1px dotted black;
+  cursor: help;
+}
+
+/* line 30, ../sass/appearance/_base.scss */
+sup, sub {
+  line-height: 0;
+}
+
+/* line 31, ../sass/appearance/_base.scss */
+sup {
+  vertical-align: super;
+}
+
+/* line 32, ../sass/appearance/_base.scss */
+sub {
+  vertical-align: sub;
+}
+
+/* line 33, ../sass/appearance/_base.scss */
+blockquote {
+  padding: 1.5em;
+}
+
+/* line 34, ../sass/appearance/_base.scss */
+hr {
+  border: none;
+  background: #ddd;
+  width: 100%;
+}
+
+/* line 35, ../sass/appearance/_base.scss */
+ul, ol {
+  margin-left: 1.5em;
+}
+
+/* line 36, ../sass/appearance/_base.scss */
+ul {
+  list-style: disc outside;
+}
+
+/* line 37, ../sass/appearance/_base.scss */
+ol {
+  list-style: decimal outside;
+}
+
+/* line 38, ../sass/appearance/_base.scss */
+input, select, button {
+  cursor: pointer;
+}
+
+/* line 39, ../sass/appearance/_base.scss */
+table {
+  font: inherit;
+  width: 100%;
+}
+
+/* html 5 */
+/* line 43, ../sass/appearance/_base.scss */
+article, aside, header, hgroup,
+nav, figure, section, footer {
+  display: block;
+}
+
+/* Debug */
+/* line 46, ../sass/appearance/_base.scss */
+.debug {
+  outline: solid gold 1px;
+}
+
+/* line 47, ../sass/appearance/_base.scss */
+.debug-background {
+  background: rgba(255, 215, 0, 0.2) !important;
+}
+
+/* line 28, ../sass/appearance/_form.scss */
 label {
   font-weight: normal;
 }
 
-/* line 2, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 29, ../sass/appearance/_form.scss */
+label.inline {
+  display: inline-block;
+  text-align: right;
+  margin-right: 1em;
+}
+
+/* line 34, ../sass/appearance/_form.scss */
 fieldset {
-  padding: 0 1.4em 1.4em 1.4em;
-  margin: 0 0 1.5em 0;
-  border: 1px solid #ccc;
+  border: 0px solid #dddddd;
+  margin: 0 -2em;
+  margin-bottom: 0em;
+  padding: 0 2em;
+  padding-top: 0;
+  padding-bottom: 1em;
+  position: relative;
 }
 
-/* line 3, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 40, ../sass/appearance/_form.scss */
 legend {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-top: -0.2em;
-  margin-bottom: 1em;
+  margin: 0;
+  padding: 0;
+  margin-bottom: .5em;
 }
 
-/* line 4, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-fieldset, #IE8#HACK {
-  padding-top: 1.4em;
-}
-
-/* line 5, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-legend, #IE8#HACK {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* line 6, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
+/* line 42, ../sass/appearance/_form.scss */
+input[type=text], input[type=password],
+input[type=color],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type="url"],
+input[type=week],
+textarea,
+select {
   background-color: #fff;
   border: 1px solid #c6ccce;
   color: #1a1a1a;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
-  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  margin: 0 -7px;
+  padding: 7px;
+  vertical-align: baseline;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
-  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
-  -moz-transition-property: box-shadow;
   -webkit-transition-property: box-shadow;
+  -moz-transition-property: box-shadow;
   -o-transition-property: box-shadow;
   transition-property: box-shadow;
-  -moz-transition-duration: 0.3s;
   -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  -moz-transition-timing-function: ease-out;
   -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
   -o-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
 
-/* line 14, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, input[type=email]:focus, input.text:focus, input.title:focus, textarea:focus {
+/* line 55, ../sass/appearance/_form.scss */
+input[type=text]:focus, input[type=password]:focus,
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=time]:focus,
+input[type="url"]:focus,
+input[type=week]:focus,
+textarea:focus,
+select:focus {
   border-color: #98a8b1;
-  -moz-box-shadow: 0px 0px 18px rgba(87, 182, 247, 0.4);
   -webkit-box-shadow: 0px 0px 18px rgba(87, 182, 247, 0.4);
-  -o-box-shadow: 0px 0px 18px rgba(87, 182, 247, 0.4);
+  -moz-box-shadow: 0px 0px 18px rgba(87, 182, 247, 0.4);
   box-shadow: 0px 0px 18px rgba(87, 182, 247, 0.4);
 }
 
-/* line 19, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=text], input[type=password], input[type=url], input[type=email], input.text, input.title, textarea, select {
-  margin: -5px;
-  margin-bottom: 10px;
-  padding: 5px;
-}
-
-/* line 20, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 76, ../sass/appearance/_form.scss */
 select {
-  height: 2.45em;
+  height: 2.65em;
   background: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white));
 }
 
-/* line 22, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 78, ../sass/appearance/_form.scss */
 input[type=submit], input[type=button] {
-  background-color: #ef3d36;
-  color: white;
-  border: 1px solid white;
-  padding: 5px 2em;
+  background-color: #E94E1B;
+  color: #fff;
+  border: 1px solid #E94E1B;
+  padding: 7px 2em;
   position: relative;
-  margin-right: 1em;
-  font-size: 92.308%;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
-  border-radius: 6px;
-  -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
-  -o-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+  margin: 0 -7px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #e9781b), color-stop(100%, #e94e1b));
+  background-image: -webkit-linear-gradient(top, #e9781b 20%, #e94e1b 100%);
+  background-image: -moz-linear-gradient(top, #e9781b 20%, #e94e1b 100%);
+  background-image: -o-linear-gradient(top, #e9781b 20%, #e94e1b 100%);
+  background-image: linear-gradient(top, #e9781b 20%, #e94e1b 100%);
+  font-size: 75%;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 }
 
-/* line 33, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=button] {
-  background-color: #ef3d36;
+/* line 96, ../sass/appearance/_form.scss */
+input[type=submit]:hover, input[type=button]:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #e9891b), color-stop(100%, #e94e1b));
+  background-image: -webkit-linear-gradient(top, #e9891b 20%, #e94e1b 100%);
+  background-image: -moz-linear-gradient(top, #e9891b 20%, #e94e1b 100%);
+  background-image: -o-linear-gradient(top, #e9891b 20%, #e94e1b 100%);
+  background-image: linear-gradient(top, #e9891b 20%, #e94e1b 100%);
 }
 
-/* line 37, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=submit]:active, input[type=button]:active, input[type=button]:active {
+/* line 105, ../sass/appearance/_form.scss */
+input[type=submit]:active, input[type=button]:active {
   top: 1px;
   left: 1px;
 }
 
-/* line 41, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-input[type=submit].busy, input.busy[type=button] {
+/* line 114, ../sass/appearance/_form.scss */
+form.busy input[type=submit], form.busy input[type=button] {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   opacity: 0.3;
 }
 
-/* line 45, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 118, ../sass/appearance/_form.scss */
 ::-webkit-input-placeholder {
   color: #cccccc;
 }
 
-/* line 48, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 121, ../sass/appearance/_form.scss */
 input:-moz-placeholder, textarea:-moz-placeholder {
   color: #cccccc;
 }
 
-/* line 53, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-form.inline {
-  line-height: 3;
-}
-
-/* line 54, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
-form.inline p {
-  margin-bottom: 0;
-}
-
-/* line 55, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 126, ../sass/appearance/_form.scss */
 .error, .alert, .notice, .success {
   padding: 3px;
   margin: -5px;
-  -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
+  -moz-border-radius: 6px;
   -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
+  -o-border-radius: 6px;
   border-radius: 6px;
   margin-bottom: 10px;
   border: 2px solid #ddd;
 }
 
-/* line 59, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 130, ../sass/appearance/_form.scss */
 .error, .alert {
   background: #fbe3e4;
   color: #8a1f11;
   border-color: #fbc2c4;
 }
-/* line 63, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 134, ../sass/appearance/_form.scss */
 .error a, .alert a {
   color: #8a1f11;
 }
 
-/* line 65, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 136, ../sass/appearance/_form.scss */
 .notice {
   background: #fff6bf;
   color: #514721;
   border-color: #ffd324;
 }
-/* line 69, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 140, ../sass/appearance/_form.scss */
 .notice a {
   color: #514721;
 }
 
-/* line 71, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 142, ../sass/appearance/_form.scss */
 .success {
   background: #e6efc2;
   color: #264409;
   border-color: #c6d880;
 }
-/* line 75, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_form.scss */
+/* line 146, ../sass/appearance/_form.scss */
 .success a {
   color: #264409;
 }
 
-/* line 2, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-a {
-  color: #0071b4;
-}
-
-/* line 3, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-a:hover {
-  color: #01a1ff;
-}
-
-/* line 4, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-a:visited {
-  color: #003758;
-}
-
-/* line 8, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/*
+Baseline - a designer framework
+Copyright (C) 2009 Stephane Curzi, ProjetUrbain.com
+Creative Commons Attribution-Share Alike 3.0 License
+version 0.5
+*/
+/******************** Baseline grid: 13/18px ********************/
+/* line 9, ../sass/appearance/_typography.scss */
 body {
-  color: #1a1a1a;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: false;
+  font-size: 14px;
+  line-height: 18px;
 }
 
-/* line 10, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-img {
-  border: none;
+/* line 11, ../sass/appearance/_typography.scss */
+h1, h2, h3, h4, h5, legend, h6 {
+  position: relative;
 }
 
-/* line 11, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-img.fluid, embed.fluid, object.fluid, video.fluid {
-  max-width: 100%;
+/* line 12, ../sass/appearance/_typography.scss */
+h1, h2 {
+  line-height: 36px;
+  margin-bottom: 18px;
 }
 
-/* line 14, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-div.prepend-top, .prepend-top {
-  margin-top: 1.5em;
+/* line 13, ../sass/appearance/_typography.scss */
+h1, h2, h3, h4 {
+  margin-top: 18px;
 }
 
-/* line 15, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-div.append-bottom, .append-bottom {
-  margin-bottom: 1.5em;
+/* line 14, ../sass/appearance/_typography.scss */
+h3, h4, h5, legend, h6 {
+  line-height: 18px;
 }
 
-/* line 17, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 15, ../sass/appearance/_typography.scss */
+h1 {
+  font-size: 36px;
+  top: 5px;
+}
+
+/* line 16, ../sass/appearance/_typography.scss */
+h2 {
+  font-size: 28px;
+  top: 8px;
+}
+
+/* line 17, ../sass/appearance/_typography.scss */
+h3 {
+  font-size: 22px;
+  top: 1px;
+}
+
+/* line 18, ../sass/appearance/_typography.scss */
+h4 {
+  font-size: 18px;
+  top: 2px;
+}
+
+/* line 19, ../sass/appearance/_typography.scss */
+h5, legend {
+  font-size: 16px;
+  top: 4px;
+}
+
+/* line 20, ../sass/appearance/_typography.scss */
+h6 {
+  font-size: 14px;
+  top: 5px;
+}
+
+/* line 24, ../sass/appearance/_typography.scss */
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+  margin-top: 0;
+}
+
+/* line 26, ../sass/appearance/_typography.scss */
+small {
+  font-size: .7em;
+}
+
+/* line 28, ../sass/appearance/_typography.scss */
+abbr, code, kbd,
+ul, ol, dl, dialog {
+  font-size: 13px;
+  position: relative;
+  top: 5px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+/* line 29, ../sass/appearance/_typography.scss */
+li ul, li ol, ul ul, ol ol {
+  top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* line 32, ../sass/appearance/_typography.scss */
+li h1, li h2, li h3,
+li h4, li h5, li legend, li h6,
+li p {
+  top: 0;
+}
+
+/* line 34, ../sass/appearance/_typography.scss */
 hr {
   background: #dddddd;
   color: #dddddd;
@@ -339,32 +602,76 @@ hr {
   float: none;
   width: 100%;
   height: 1px;
-  margin: 0 0 17px;
+  margin: 0 0 1em 0;
   border: none;
 }
 
-/* line 18, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 35, ../sass/appearance/_typography.scss */
 hr.space {
   background: #fff;
   color: #fff;
   visibility: hidden;
 }
 
-/* line 22, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 36, ../sass/appearance/_typography.scss */
+hr.thick {
+  position: relative;
+  height: 4px;
+  margin: 1em 0;
+}
+
+/* line 2, ../sass/appearance/_styles.scss */
+a {
+  color: #0071b4;
+}
+
+/* line 3, ../sass/appearance/_styles.scss */
+a:hover {
+  color: #01a1ff;
+}
+
+/* line 4, ../sass/appearance/_styles.scss */
+a:visited {
+  color: #003758;
+}
+
+/* line 8, ../sass/appearance/_styles.scss */
+body {
+  color: #1a1a1a;
+  font-size: false;
+  background: white;
+}
+
+/* line 10, ../sass/appearance/_styles.scss */
+img {
+  border: none;
+}
+
+/* line 11, ../sass/appearance/_styles.scss */
+img.fluid, embed.fluid, object.fluid, video.fluid {
+  max-width: 100%;
+}
+
+/* line 15, ../sass/appearance/_styles.scss */
+.blur {
+  -webkit-filter: blur(8px);
+}
+
+/* line 16, ../sass/appearance/_styles.scss */
 .bottom {
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
-/* line 23, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 17, ../sass/appearance/_styles.scss */
 .box {
   padding: 1.5em;
   margin-bottom: 1.5em;
   background: #e5eCf9;
 }
 
-/* line 24, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-.clearfix:after, .container:after {
+/* line 18, ../sass/appearance/_styles.scss */
+.clear:after, .container:after {
   content: "\0020";
   display: block;
   height: 0;
@@ -373,33 +680,28 @@ hr.space {
   overflow: hidden;
 }
 
-/* line 25, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-.clearfix, .container {
+/* line 19, ../sass/appearance/_styles.scss */
+.clear, .container {
   display: block;
 }
 
-/* line 26, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
-.clear {
-  clear: both;
-}
-
-/* line 27, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 20, ../sass/appearance/_styles.scss */
 .hide {
   display: none;
 }
 
-/* line 28, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 21, ../sass/appearance/_styles.scss */
 .local {
   text-decoration: none;
   border-bottom: 1px dotted;
 }
 
-/* line 29, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 22, ../sass/appearance/_styles.scss */
 .nowrap {
   white-space: nowrap;
 }
 
-/* line 30, /Users/se/webservers/vhosts_tomcat/iq/dostavkino.dev/public_html/rc/compass/sass/_appearance.scss */
+/* line 23, ../sass/appearance/_styles.scss */
 .top {
   margin-top: 0;
   padding-top: 0;
